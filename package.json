@@ -1,5 +1,5 @@
 {
-  "name": "dual-portfolio",
+  "name": "portfolio",
   "version": "0.0.0",
   "scripts": {
     "ng": "npx ng",
