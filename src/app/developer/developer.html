@@ -1,0 +1,76 @@
+<div class="page-container dev-theme">
+    <!-- Minimalist Back Button -->
+    <button class="back-btn" routerLink="/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Split Screen</span>
+    </button>
+
+    <header class="dev-header">
+        <h1>Engineering & Architecture</h1>
+        <p class="subtitle">Building scalable systems and immersive experiences</p>
+    </header>
+
+    <main class="content-grid">
+        <section class="card unity-card">
+            <div class="card-content">
+                <h3>Unity Game Development</h3>
+                <p>Architected a complex 3D rendering pipeline for a custom physics-based multiplayer game. Optimized
+                    asset bundles to reduce load times by 40%.</p>
+                <div class="tech-stack">
+                    <span>C#</span>
+                    <span>HLSL</span>
+                    <span>Unity DOTS</span>
+                </div>
+            </div>
+            <div class="card-visual">
+                <div class="wireframe-cube"></div>
+            </div>
+        </section>
+
+        <section class="card fullstack-card">
+            <div class="card-content">
+                <h3>Full-Stack Microservices</h3>
+                <p>Led a backend rewrite migrating a monolithic Node.js application to Go microservices, increasing
+                    throughput by 5x and lowering latency.</p>
+                <div class="tech-stack">
+                    <span>Go</span>
+                    <span>gRPC</span>
+                    <span>Kubernetes</span>
+                    <span>Angular</span>
+                </div>
+            </div>
+            <div class="card-visual">
+                <div class="network-nodes"></div>
+            </div>
+        </section>
+
+        <section class="card db-card">
+            <div class="card-content">
+                <h3>Database Architecture</h3>
+                <p>Designed hyper-relational schemas handling millions of rows with continuous partitioning. Engineered
+                    caching layers to serve high-read dashboards instantly.</p>
+                <div class="db-tables">
+                    <div class="table">
+                        <div class="t-header">users</div>
+                        <div class="t-row">id (PK)</div>
+                        <div class="t-row">email_idx</div>
+                        <div class="t-row">created_at</div>
+                    </div>
+                    <svg class="relation-arrow" width="40" height="20">
+                        <path stroke="#00E5FF" stroke-width="2" fill="none" d="M0,10 L30,10 L25,5 M30,10 L25,15" />
+                    </svg>
+                    <div class="table">
+                        <div class="t-header">audit_logs</div>
+                        <div class="t-row">user_id (FK)</div>
+                        <div class="t-row">action_type</div>
+                        <div class="t-row">timestamp</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
