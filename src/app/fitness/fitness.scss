@@ -2,7 +2,7 @@
     min-height: 100vh;
     background-color: #121212;
     color: #E0E0E0;
-    padding: 4rem 2rem;
+    padding: 6rem 2rem 4rem 2rem;
     font-family: 'Inter', sans-serif;
     position: relative;
     overflow-x: hidden;
@@ -20,41 +20,62 @@
     }
 }
 
-.back-btn {
+.top-navbar {
     position: fixed;
-    top: 2rem;
-    left: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 94, 0, 0.2);
-    color: #FF5E00;
-    /* Voltage Orange */
-    padding: 0.5rem 1rem;
-    border-radius: 30px;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 94, 0, 0.2);
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    z-index: 100;
-    transition: all 0.3s ease;
-    font-family: inherit;
-    font-weight: 500;
-    backdrop-filter: blur(10px);
+    padding: 0 2rem;
+    z-index: 1000;
 
-    span {
-        opacity: 0;
-        width: 0;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        white-space: nowrap;
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .brand {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .side-tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            background: rgba(255, 94, 0, 0.1);
+            color: #FF5E00;
+            border: 1px solid rgba(255, 94, 0, 0.3);
+        }
     }
 
-    &:hover {
-        background: rgba(255, 94, 0, 0.1);
-        box-shadow: 0 0 15px rgba(255, 94, 0, 0.2);
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
 
-        span {
-            opacity: 1;
-            width: 80px;
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: #FF5E00;
+            }
         }
     }
 }
@@ -97,66 +118,249 @@
     letter-spacing: 1px;
 }
 
-/* Timeline */
-.timeline-section {
-    margin-bottom: 6rem;
-}
-
-.timeline {
+/* Social Links */
+.fitness-socials {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    position: relative;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
 
-    &::before {
-        content: '';
-        position: absolute;
-        left: 45px;
-        top: 10px;
-        bottom: 10px;
-        width: 2px;
-        background: rgba(255, 94, 0, 0.2);
-    }
+    .social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #fff;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        background: rgba(255, 94, 0, 0.1);
+        border: 1px solid rgba(255, 94, 0, 0.3);
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
 
-    .timeline-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 2rem;
-        position: relative;
-        padding-left: 20px;
-
-        .dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
+        &:hover {
             background: #FF5E00;
-            box-shadow: 0 0 10px rgba(255, 94, 0, 0.5);
-            margin-top: 6px;
-            position: relative;
-            z-index: 2;
+            color: #121212;
+            box-shadow: 0 0 10px #FF5E00;
         }
 
-        .year {
-            font-weight: bold;
-            font-size: 1.5rem;
-            color: #fff;
-            min-width: 80px;
-        }
-
-        .detail {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 94, 0, 0.2);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            flex-grow: 1;
-            color: #ccc;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+        &.cook-link {
+            border-color: rgba(255, 183, 0, 0.3);
+            background: rgba(255, 183, 0, 0.1);
 
             &:hover {
-                transform: translateX(10px);
-                border-color: #FF5E00;
+                background: #FFB700;
+                box-shadow: 0 0 10px #FFB700;
             }
         }
+    }
+}
+
+/* Hero Section */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeIn 1s ease-in-out;
+
+    .hero-content,
+    .hero-image-container {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .hero-content {
+        z-index: 10;
+        pointer-events: none;
+        /* Allow image hover through text area */
+
+        /* Add subtle text shadow so it pops against the image */
+        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .slogan {
+        font-size: 2.5rem;
+        color: #fff;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(90deg, #FF5E00, #FFB700);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        pointer-events: auto;
+        /* Re-enable pointer if needed */
+        /* Override gradient text shadows with a simple drop shadow on the wrapper or fallback */
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.8));
+    }
+
+    .slogan-desc {
+        font-size: 1.2rem;
+        color: #ddd;
+        margin-bottom: 2rem;
+        pointer-events: auto;
+    }
+
+    .hero-image-container {
+        position: relative;
+        z-index: 1;
+        transform: translateX(-100px);
+
+        .emo-body-img {
+            max-width: 100%;
+            width: 500px;
+            height: auto;
+            border-radius: 12px;
+            opacity: 0.85;
+        }
+    }
+}
+
+/* Diet Grid / Cards */
+.diet-section {
+    margin-top: 4rem;
+}
+
+.diet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.meal-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 94, 0, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 94, 0, 0.4);
+        box-shadow: 0 10px 30px rgba(255, 94, 0, 0.1);
+    }
+
+    &.post-workout-card {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 183, 0, 0.05) 100%);
+        border-color: rgba(255, 183, 0, 0.2);
+
+        &:hover {
+            border-color: rgba(255, 183, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(255, 183, 0, 0.1);
+        }
+    }
+
+    &.night-card {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(144, 202, 249, 0.05) 100%);
+        border-color: rgba(144, 202, 249, 0.2);
+
+        &:hover {
+            border-color: rgba(144, 202, 249, 0.6);
+            box-shadow: 0 10px 30px rgba(144, 202, 249, 0.1);
+        }
+    }
+}
+
+.meal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+
+    h3 {
+        margin: 0;
+        color: #fff;
+        font-size: 1.4rem;
+        letter-spacing: 0.5px;
+    }
+
+    .meal-time {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #FF5E00;
+        background: rgba(255, 94, 0, 0.1);
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+
+        &.highlight {
+            color: #FFB700;
+            background: rgba(255, 183, 0, 0.1);
+        }
+
+        &.text-blue {
+            color: #90CAF9;
+            background: rgba(144, 202, 249, 0.1);
+        }
+    }
+}
+
+.meal-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    li {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        border-left: 3px solid #FF5E00;
+        transition: background 0.2s ease;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.4);
+        }
+    }
+
+    .post-workout-card & li {
+        border-left-color: #FFB700;
+    }
+
+    .night-card & li {
+        border-left-color: #90CAF9;
+    }
+
+    .item-name {
+        color: #E0E0E0;
+        font-weight: 500;
+        margin-bottom: 0.3rem;
+
+        span {
+            color: #FF5E00;
+        }
+    }
+
+    .post-workout-card .item-name span {
+        color: #FFB700;
+    }
+
+    .night-card .item-name span {
+        color: #90CAF9;
+    }
+
+    .item-macros {
+        color: #888;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
