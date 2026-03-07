@@ -2,12 +2,12 @@
   "name": "portfolio",
   "version": "0.0.0",
   "scripts": {
-    "ng": "npx ng",
+    "ng": "ng",
     "start": "node server.js",
-    "dev": "npx ng serve",
-    "build": "npx ng build --configuration production",
-    "watch": "npx ng build --watch --configuration development",
-    "test": "npx ng test"
+    "dev": "ng serve",
+    "build": "ng build --configuration production",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
   "private": true,
   "packageManager": "npm@11.11.0",
