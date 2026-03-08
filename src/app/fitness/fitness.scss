@@ -83,6 +83,19 @@
         align-items: center;
         gap: 1.5rem;
 
+        @media (max-width: 768px) {
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            /* Space for scrollbar if visible */
+            mask-image: linear-gradient(to right, black 85%, transparent 100%);
+            -webkit-overflow-scrolling: touch;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
         .nav-link {
             display: flex;
             align-items: center;
@@ -91,6 +104,11 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s ease;
+            white-space: nowrap;
+
+            @media (max-width: 480px) {
+                font-size: 0.8rem;
+            }
 
             &:hover {
                 color: #FF5E00;
@@ -104,6 +122,7 @@
             margin-left: 1rem;
             padding-left: 1rem;
             border-left: 1px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
 
             .nav-social-link {
                 opacity: 0.7;
@@ -118,28 +137,36 @@
     }
 }
 
-.fitness-header {
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 4rem;
-    margin-top: 2rem;
+@media (max-width: 768px) {
+    .top-navbar {
+        padding: 0 1rem;
+        height: 60px;
 
-    h1 {
-        font-size: clamp(2.5rem, 5vw, 4rem);
-        color: #fff;
-        margin: 0 0 1rem 0;
-        background: linear-gradient(90deg, #fff, #FF5E00);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+        .logo {
+            .side-tag {
+                display: none;
+            }
 
-    .subtitle {
-        color: #999;
-        font-size: 1.2rem;
+            .brand {
+                display: none;
+            }
+        }
+
+        .nav-links {
+            .nav-link {
+                display: none;
+            }
+
+            .nav-socials {
+                border-left: none;
+                margin-left: 0;
+                padding-left: 0;
+            }
+        }
     }
 }
+
+
 
 .content-container {
     max-width: 1000px;
@@ -164,57 +191,77 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     place-items: center;
-    text-align: center;
     margin-bottom: 4rem;
     animation: fadeIn 1s ease-in-out;
 
-    .hero-content,
-    .hero-image-container {
+    .hero-image-container,
+    .hero-content {
         grid-column: 1;
         grid-row: 1;
     }
 
-    .hero-content {
-        z-index: 10;
-        pointer-events: none;
-        /* Allow image hover through text area */
+    .hero-image-container {
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        width: 100%;
 
-        /* Add subtle text shadow so it pops against the image */
-        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+        .emo-body-img {
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+            border-radius: 12px;
+            filter: drop-shadow(2px 0 0 #FF5E00) drop-shadow(-2px 0 0 #FF5E00) drop-shadow(0 2px 0 #FF5E00) drop-shadow(0 -2px 0 #FF5E00);
+        }
+    }
+
+    .hero-content {
+        z-index: 2;
+        text-align: center;
+        max-width: 600px;
     }
 
     .slogan {
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 5vw, 3rem);
         color: #fff;
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
         background: linear-gradient(90deg, #FF5E00, #FFB700);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        pointer-events: auto;
-        /* Re-enable pointer if needed */
-        /* Override gradient text shadows with a simple drop shadow on the wrapper or fallback */
         filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.8));
     }
 
     .slogan-desc {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         color: #ddd;
-        margin-bottom: 2rem;
-        pointer-events: auto;
     }
 
-    .hero-image-container {
-        position: relative;
-        z-index: 1;
-        transform: translateX(-100px);
+    /* Desktop Side-by-Side */
+    @media (min-width: 1024px) {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        text-align: left;
+        gap: 4rem;
 
-        .emo-body-img {
-            max-width: 100%;
-            width: 500px;
-            height: auto;
-            border-radius: 12px;
-            opacity: 0.85;
+        .hero-image-container {
+            width: auto;
+            flex: 1;
+            justify-content: flex-end;
+            /* Push to center-line */
+
+            .emo-body-img {
+                max-height: 600px;
+            }
+        }
+
+        .hero-content {
+            flex: 1;
+            text-align: left;
+            text-shadow: none;
         }
     }
 }
