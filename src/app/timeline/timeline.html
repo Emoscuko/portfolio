@@ -1,0 +1,52 @@
+<section class="timeline-wrapper">
+    <div class="timeline-container">
+        <!-- Section Title -->
+        <div class="timeline-header">
+            <span class="tag">{{ subtitle }}</span>
+            <h2 class="title" [class.cyber]="theme === 'cyber'">{{ title }}</h2>
+        </div>
+
+        <!-- Timeline Items -->
+        <div class="timeline-content">
+            <div class="vertical-line" [class.cyber-line]="theme === 'cyber'"
+                [class.fitness-line]="theme === 'fitness'"></div>
+
+            <div class="timeline-items">
+                <div class="timeline-row" *ngFor="let item of items; let i = index; let isEven = even">
+                    <!-- Dot -->
+                    <div class="timeline-dot" [style.border-color]="getTypeConfig(item.type).color"
+                        [style.box-shadow]="'0 0 8px ' + getTypeConfig(item.type).color + '50'">
+                    </div>
+
+                    <!-- Card -->
+                    <div class="timeline-card-container" [ngClass]="isEven ? 'left' : 'right'">
+                        <div class="glass-card">
+                            <div class="card-header">
+                                <div class="icon-box" [style.background-color]="getTypeConfig(item.type).color + '15'"
+                                    [style.border-color]="getTypeConfig(item.type).color + '25'">
+                                    <span class="icon">{{ getTypeConfig(item.type).icon }}</span>
+                                </div>
+                                <div class="type-label-container">
+                                    <span class="type-label" [style.color]="getTypeConfig(item.type).color">
+                                        {{ getTypeConfig(item.type).label }}
+                                    </span>
+                                </div>
+                                <div class="year-label">
+                                    <span>📅</span> <span>{{ item.year }}</span>
+                                </div>
+                            </div>
+
+                            <h3 class="item-title group-hover:text-cyber">{{ item.title }}</h3>
+                            <p class="item-subtitle">{{ item.subtitle }}</p>
+                            <p class="item-desc">{{ item.description }}</p>
+
+                            <div class="tags" *ngIf="item.tags && item.tags.length > 0">
+                                <span class="tag" *ngFor="let tag of item.tags">{{ tag }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

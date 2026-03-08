@@ -40,6 +40,25 @@
         align-items: center;
         gap: 1rem;
 
+        .split-screen-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00E5FF;
+            text-decoration: none;
+            padding: 0.4rem;
+            border-radius: 8px;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: #00E5FF;
+                color: #121212;
+                box-shadow: 0 0 10px #00E5FF;
+            }
+        }
+
         .brand {
             font-size: 1.2rem;
             font-weight: 700;
@@ -77,6 +96,25 @@
                 color: #00E5FF;
             }
         }
+
+        .nav-socials {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-left: 1rem;
+            padding-left: 1rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+            .nav-social-link {
+                opacity: 0.7;
+                transition: opacity 0.3s ease, transform 0.3s ease;
+
+                &:hover {
+                    opacity: 1;
+                    transform: translateY(-2px);
+                }
+            }
+        }
     }
 }
 
@@ -102,45 +140,47 @@
         font-size: 1.2rem;
     }
 
-    .dev-socials {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-top: 1.5rem;
+}
 
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #fff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            background: rgba(0, 229, 255, 0.1);
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+
+    .social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #fff;
+        text-decoration: none;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        background: rgba(0, 229, 255, 0.1);
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        transition: all 0.3s ease;
+        font-size: 0.8rem;
+
+        &:hover {
+            background: #00E5FF;
+            color: #121212;
+            box-shadow: 0 0 10px #00E5FF;
+        }
+
+        &.game-link {
+            border-color: rgba(183, 0, 255, 0.3);
+            background: rgba(183, 0, 255, 0.1);
 
             &:hover {
-                background: #00E5FF;
-                color: #121212;
-                box-shadow: 0 0 10px #00E5FF;
-            }
-
-            &.game-link {
-                border-color: rgba(183, 0, 255, 0.3);
-                background: rgba(183, 0, 255, 0.1);
-
-                &:hover {
-                    background: #b700ff;
-                    color: #fff;
-                    box-shadow: 0 0 10px #b700ff;
-                }
+                background: #b700ff;
+                color: #fff;
+                box-shadow: 0 0 10px #b700ff;
             }
         }
     }
 }
+
+
 
 .content-grid {
     display: grid;
@@ -194,50 +234,6 @@
     }
 }
 
-.db-card {
-    grid-column: 1 / -1;
-
-    .db-tables {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        margin-top: 2rem;
-        flex-wrap: wrap;
-
-        .table {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(0, 229, 255, 0.2);
-            border-radius: 6px;
-            overflow: hidden;
-            min-width: 150px;
-
-            .t-header {
-                background: rgba(0, 229, 255, 0.1);
-                color: #fff;
-                padding: 0.5rem;
-                font-weight: bold;
-                text-align: center;
-                border-bottom: 1px solid rgba(0, 229, 255, 0.2);
-            }
-
-            .t-row {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
-                color: #bbb;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-
-                &:last-child {
-                    border-bottom: none;
-                }
-            }
-        }
-
-        .relation-arrow {
-            opacity: 0.6;
-        }
-    }
-}
 
 /* Abstract visuals for cards */
 .card-visual {

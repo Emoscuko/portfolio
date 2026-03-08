@@ -1,0 +1,221 @@
+.timeline-wrapper {
+    position: relative;
+    padding: 6rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.timeline-header {
+    text-align: center;
+    margin-bottom: 4rem;
+
+    .tag {
+        font-family: monospace;
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 0.75rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        color: #f3f4f6;
+        margin: 0;
+
+        &.cyber {
+            background: linear-gradient(90deg, #fff, #00E5FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+}
+
+.timeline-content {
+    position: relative;
+}
+
+.vertical-line {
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+
+    &.cyber-line {
+        background: linear-gradient(to bottom, rgba(0, 255, 65, 0.3), rgba(0, 243, 255, 0.2), transparent);
+    }
+
+    &.fitness-line {
+        background: linear-gradient(to bottom, rgba(255, 75, 75, 0.3), rgba(255, 179, 0, 0.2), transparent);
+    }
+
+    @media (min-width: 768px) {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.timeline-items {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    position: relative;
+}
+
+.timeline-row {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 24px;
+    top: 24px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #0a0a0a;
+    border: 2px solid;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    margin-top: 2rem;
+    /* center the dot relatively */
+
+    @media (min-width: 768px) {
+        left: 50%;
+    }
+}
+
+.timeline-card-container {
+    padding-left: 60px;
+    width: 100%;
+    box-sizing: border-box;
+
+    @media (min-width: 768px) {
+        width: 50%;
+        padding-left: 0;
+
+        &.left {
+            padding-right: 3rem;
+            margin-right: auto;
+            text-align: right;
+
+            .card-header {
+                flex-direction: row-reverse;
+
+                .year-label {
+                    margin-left: 0;
+                    margin-right: auto;
+                }
+            }
+
+            .tags {
+                justify-content: flex-end;
+            }
+        }
+
+        &.right {
+            padding-left: 3rem;
+            margin-left: auto;
+        }
+    }
+}
+
+.glass-card {
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        transform: translateY(-3px);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+
+    .icon-box {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid;
+        font-size: 14px;
+    }
+
+    .type-label-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .type-label {
+        font-family: monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .year-label {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #888;
+        font-family: monospace;
+        font-size: 0.75rem;
+    }
+}
+
+.item-title {
+    font-family: monospace;
+    font-weight: 600;
+    color: #f3f4f6;
+    margin: 0 0 0.25rem 0;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.item-subtitle {
+    font-size: 0.875rem;
+    color: #888;
+    margin: 0 0 0.75rem 0;
+}
+
+.item-desc {
+    font-size: 0.875rem;
+    color: #aaa;
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    .tag {
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.65rem;
+        font-family: monospace;
+        background: rgba(40, 40, 40, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #888;
+    }
+}

@@ -1,6 +1,13 @@
 <div class="page-container fitness-theme">
     <nav class="top-navbar">
         <div class="logo">
+            <a routerLink="/" class="split-screen-btn" title="Split Screen">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </a>
             <span class="brand">Emirhan Atar</span>
             <span class="side-tag fitness-tag">Bodybuilder</span>
         </div>
@@ -9,43 +16,19 @@
             <a href="#about" class="nav-link">About Me</a>
             <a href="#diet-program" class="nav-link">Diet Program</a>
             <a href="#weekly-program" class="nav-link">Weekly Program</a>
-            <a routerLink="/" class="nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-                Split Screen
-            </a>
+            <div class="nav-socials">
+                @for (social of socials; track social.name) {
+                <a [href]="social.url" target="_blank" class="nav-social-link" [title]="social.name">
+                    <img [src]="social.iconSrc" width="22" height="22" [alt]="social.name">
+                </a>
+                }
+            </div>
         </div>
     </nav>
 
     <header class="fitness-header" id="main">
         <h1>Bodybuilding & Lifestyle</h1>
         <p class="subtitle">Discipline, consistency, and progressive overload</p>
-
-        <div class="social-links fitness-socials">
-            <a href="https://www.instagram.com/minimpekka/" target="_blank" class="social-link">
-                <img src="https://cdn.simpleicons.org/instagram/E4405F" width="18" height="18" alt="Instagram">
-                Instagram (@minimpekka)
-            </a>
-            <a href="https://www.tiktok.com/@emirhannatar" target="_blank" class="social-link">
-                <img src="https://cdn.simpleicons.org/tiktok/E0E0E0" width="18" height="18" alt="TikTok">
-                TikTok (@emirhannatar)
-            </a>
-            <a href="https://www.youtube.com/@emirhannatar" target="_blank" class="social-link">
-                <img src="https://cdn.simpleicons.org/youtube/FF0000" width="18" height="18" alt="YouTube">
-                YouTube (@emirhannatar)
-            </a>
-            <a href="https://www.instagram.com/emirhancooks/" target="_blank" class="social-link cook-link">
-                <img src="https://cdn.simpleicons.org/instagram/E4405F" width="18" height="18" alt="Instagram">
-                Cooking Insta (@emirhancooks)
-            </a>
-            <a href="https://www.tiktok.com/@emirhancooks" target="_blank" class="social-link cook-link">
-                <img src="https://cdn.simpleicons.org/tiktok/E0E0E0" width="18" height="18" alt="TikTok">
-                Cooking TikTok
-            </a>
-        </div>
     </header>
 
     <main class="content-container">
@@ -63,175 +46,43 @@
         <section class="split-section" id="weekly-program">
             <h2 class="section-title">Weekly Program</h2>
             <div class="split-grid">
+                @for (day of weeklyWorkout; track day.id) {
                 <div class="day-card">
-                    <h3>Pazartesi: Hafif Bacak</h3>
+                    <h3>{{ day.dayName }}: {{ day.title }}</h3>
                     <ul>
-                        <li>Leg extension (3x10)</li>
-                        <li>Back Extension (3x10)</li>
-                        <li>Calf Press (3x10)</li>
-                        <li>Single Leg Press (3x10)</li>
+                        @for (exercise of day.exercises; track exercise) {
+                        <li>{{ exercise }}</li>
+                        }
                     </ul>
                 </div>
-                <div class="day-card">
-                    <h3>Salı: Core, Chest & Arms</h3>
-                    <ul>
-                        <li>Incline db press (4x8)</li>
-                        <li>Single Arm Cable Rear Delt Fly (4x8)</li>
-                        <li>Single Arm Preacher Curl (4x8)</li>
-                        <li>Decline Situps (4x8)</li>
-                    </ul>
-                </div>
-                <div class="day-card">
-                    <h3>Çarşamba: Back & Shoulders</h3>
-                    <ul>
-                        <li>Single Arm Lat Pulldown (4x8)</li>
-                        <li>Lateral Cable Raises (4x8)</li>
-                        <li>Seated Row (4x8)</li>
-                        <li>Triceps Cable Extensions (4x8)</li>
-                    </ul>
-                </div>
-                <div class="day-card">
-                    <h3>Perşembe: Balance Muscles</h3>
-                    <ul>
-                        <li>Stretching moves</li>
-                        <li>Infraspinatus workout</li>
-                    </ul>
-                </div>
-                <div class="day-card">
-                    <h3>Cuma: Upper Body</h3>
-                    <ul>
-                        <li>Incline db press (3x8)</li>
-                        <li>Dumbell Shrugs (3x8)</li>
-                        <li>Triceps Cable Extensions (3x8)</li>
-                        <li>Single Arm Preacher Curl (3x8)</li>
-                        <li>Decline Situps (3x8)</li>
-                        <li>Lateral Cable Raises (3x8)</li>
-                    </ul>
-                </div>
-                <div class="day-card">
-                    <h3>Cumartesi: Ağır Bacak</h3>
-                    <ul>
-                        <li>Free Squats (4x6)</li>
-                        <li>Reverse Nordic Curl (4x8)</li>
-                        <li>Calf Raises (4x8)</li>
-                        <li>Leg Curl (4x8)</li>
-                    </ul>
-                </div>
-                <div class="day-card">
-                    <h3>Pazar: Off Day</h3>
-                    <ul>
-                        <li>Rest and Recovery</li>
-                    </ul>
-                </div>
+                }
             </div>
         </section>
 
         <section class="diet-section" id="diet-program">
             <h2 class="section-title">Beslenme Planı (Diet Plan)</h2>
             <div class="diet-grid">
-                <!-- Kahvaltı -->
-                <div class="meal-card">
+                @for (meal of dietPlan; track meal.id) {
+                <div class="meal-card" [class]="meal.cssClass || ''">
                     <div class="meal-header">
-                        <h3>Kahvaltı</h3>
-                        <span class="meal-time">Morning</span>
+                        <h3>{{ meal.name }}</h3>
+                        <span class="meal-time" [class.highlight]="meal.highlight">{{ meal.time }}</span>
                     </div>
                     <ul class="meal-items">
+                        @for (item of meal.items; track item.name) {
                         <li>
-                            <div class="item-name">Yulaf Ezmesi &middot; <span>60g</span></div>
-                            <div class="item-macros">225 kcal | 8g P | 40g C | 4g Y</div>
+                            <div class="item-name">{{ item.name }} &middot; <span>{{ item.amount }}</span></div>
+                            <div class="item-macros">{{ item.calories }} kcal | {{ item.protein }}g P | {{ item.carbs
+                                }}g C | {{ item.fats }}g Y</div>
                         </li>
-                        <li>
-                            <div class="item-name">Muz &middot; <span>150g</span></div>
-                            <div class="item-macros">135 kcal | 1.5g P | 35g C | 0.5g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Yumurta (Tam) &middot; <span>5 adet</span></div>
-                            <div class="item-macros">350 kcal | 30g P | 3g C | 25g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Chia Tohumu &middot; <span>5g</span></div>
-                            <div class="item-macros">25 kcal | 1g P | 2g C | 1.5g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Keten Tohumu &middot; <span>5g</span></div>
-                            <div class="item-macros">25 kcal | 1g P | 1.5g C | 2g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Ham Kakao &middot; <span>10g</span></div>
-                            <div class="item-macros">25 kcal | 2g P | 5g C | 1g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Tarçın &middot; <span>10g</span></div>
-                            <div class="item-macros">25 kcal | 0.4g P | 8g C | 0.1g Y</div>
-                        </li>
+                        }
                     </ul>
                 </div>
-
-                <!-- Öğle (Post-Workout) -->
-                <div class="meal-card post-workout-card">
-                    <div class="meal-header">
-                        <h3>Öğle (Post-Workout)</h3>
-                        <span class="meal-time highlight">Recovery</span>
-                    </div>
-                    <ul class="meal-items">
-                        <li>
-                            <div class="item-name">Karabuğday (Çiğ) &middot; <span>150g</span></div>
-                            <div class="item-macros">515 kcal | 19.5g P | 107g C | 4.5g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Tavuk Göğsü (Çiğ) &middot; <span>100g</span></div>
-                            <div class="item-macros">110 kcal | 23g P | 0g C | 2g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Zeytinyağı &middot; <span>20g</span></div>
-                            <div class="item-macros">177 kcal | 0g P | 0g C | 20g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Yeşil/Kapya Biber &middot; <span>1/2 adet</span></div>
-                            <div class="item-macros">20 kcal | 1g P | 4g C | 0g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Soya Sosu &middot; <span>1 y.k.</span></div>
-                            <div class="item-macros">5 kcal | 0g P | 1g C | 0g Y</div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Akşam -->
-                <div class="meal-card">
-                    <div class="meal-header">
-                        <h3>Akşam</h3>
-                        <span class="meal-time">Evening</span>
-                    </div>
-                    <ul class="meal-items">
-                        <li>
-                            <div class="item-name">Tavuk Göğsü (Çiğ) &middot; <span>200g</span></div>
-                            <div class="item-macros">220 kcal | 46g P | 0g C | 4g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Yoğurt (Tam Yağlı) &middot; <span>300g</span></div>
-                            <div class="item-macros">185 kcal | 10g P | 14g C | 10g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Portakal &middot; <span>200g</span></div>
-                            <div class="item-macros">95 kcal | 1.8g P | 24g C | 0.2g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Zeytinyağı &middot; <span>10g</span></div>
-                            <div class="item-macros">88 kcal | 0g P | 0g C | 10g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Karabuğday (Çiğ) &middot; <span>50g</span></div>
-                            <div class="item-macros">172 kcal | 6.5g P | 36g C | 1.5g Y</div>
-                        </li>
-                        <li>
-                            <div class="item-name">Avoya Maden Suyu + Limon &middot; <span>1 şişe</span></div>
-                            <div class="item-macros">0 kcal | 0g P | 0g C | 0g Y</div>
-                        </li>
-                    </ul>
-                </div>
+                }
             </div>
         </section>
 
+        <app-timeline [items]="fitnessTimeline" title="Bodybuilding Journey" subtitle="LIFESTYLE TIMELINE"
+            theme="fitness"></app-timeline>
     </main>
 </div>

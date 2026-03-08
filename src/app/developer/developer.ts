@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TimelineComponent } from '../timeline/timeline';
+import { DEVELOPER_SOCIALS, DEVELOPER_PROJECTS, DEVELOPER_TIMELINE } from '../data/developer.data';
 
 @Component({
   selector: 'app-developer',
-  imports: [RouterLink],
+  imports: [RouterLink, TimelineComponent],
   templateUrl: './developer.html',
   styleUrl: './developer.scss'
 })
-export class Developer { }
+export class Developer {
+  socials = DEVELOPER_SOCIALS;
+  projects = DEVELOPER_PROJECTS;
+  developerTimeline = DEVELOPER_TIMELINE;
+}
