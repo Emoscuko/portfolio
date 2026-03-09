@@ -23,6 +23,7 @@ export class ScrollRevealDirective implements OnInit, OnDestroy {
                 }
             });
         }, {
+            threshold: 0,
             rootMargin: '0px 0px -200px 0px'
         });
 

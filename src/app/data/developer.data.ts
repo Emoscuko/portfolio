@@ -14,6 +14,7 @@ export interface ProjectCard {
     techStack: string[];
     visualClass: string;
     hasCustomTable?: boolean;
+    mainImage?: string;
     links?: SocialLink[];
 }
 
@@ -42,24 +43,25 @@ export const DEVELOPER_PROJECTS: ProjectCard[] = [
     {
         id: "unity-game",
         title: "Unity Game Development",
-        description: "Current work Slime Hunter 2D Shooter game",
+        description: "Current work Slime Hunter 2D Shooter game with my friend.",
         techStack: ["C#", "Unity"],
         visualClass: "unity-card",
+        mainImage: "/SlimeHunterIcon.png",
         links: [
             {
-                name: "SlimeHunter (Play)",
+                name: "SlimeHunter",
                 url: "https://play.google.com/store/apps/details?id=com.pixelcorsairs.slimehunter&pli=1",
                 iconSrc: "https://cdn.simpleicons.org/googleplay/41BA7A",
                 cssClass: "game-link"
             },
             {
-                name: "SlimeHunter Insta",
+                name: "SlimeHunter",
                 url: "https://www.instagram.com/slimehunter2026/",
                 iconSrc: "https://cdn.simpleicons.org/instagram/E4405F",
                 cssClass: "game-link"
             },
             {
-                name: "Co-Dev LinkedIn",
+                name: "Abdullah Sevinç",
                 url: "https://www.linkedin.com/in/abdullah-sevin%C3%A7-6387bb339/",
                 iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg",
                 cssClass: "game-link"

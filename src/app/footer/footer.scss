@@ -1,0 +1,166 @@
+.footer-container {
+    position: relative;
+    padding: 4rem 1.5rem;
+    margin-top: 4rem;
+    background-color: transparent;
+
+    .top-divider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.15), transparent);
+    }
+
+    &.fitness-theme {
+        .top-divider {
+            background: linear-gradient(90deg, transparent, rgba(255, 94, 0, 0.15), transparent);
+        }
+
+        .heading-section .tagline {
+            color: rgba(255, 94, 0, 0.4);
+        }
+
+        .heading-section .title .accent {
+            background: linear-gradient(90deg, #fff, #FF5E00);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-button:hover {
+            color: #FF5E00;
+            border-color: rgba(255, 94, 0, 0.3) !important;
+            background: rgba(255, 94, 0, 0.05) !important;
+            box-shadow: 0 0 15px rgba(255, 94, 0, 0.1);
+        }
+
+        .copyright-section .build-info .heart-icon {
+            color: rgba(255, 94, 0, 0.5);
+        }
+    }
+
+    .footer-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .heading-section {
+        margin-bottom: 3rem;
+
+        .tagline {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8rem;
+            color: rgba(0, 229, 255, 0.4);
+            display: block;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: #f3f4f6;
+            margin-bottom: 1rem;
+
+            .accent {
+                background: linear-gradient(90deg, #fff, #00E5FF);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        .description {
+            color: #9ca3af;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+    }
+
+    .social-links-container {
+        display: flex;
+        justify-content: center;
+        gap: 1.25rem;
+        margin-bottom: 4rem;
+
+        .social-button {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #9ca3af;
+
+            &:hover {
+                transform: translateY(-4px) scale(1.05);
+                border-color: rgba(0, 229, 255, 0.3);
+                background: rgba(0, 229, 255, 0.05);
+                box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
+
+                .social-icon {
+                    filter: none !important;
+                    opacity: 1;
+                }
+            }
+
+            .social-icon {
+                filter: grayscale(1);
+                opacity: 0.7;
+                transition: all 0.3s ease;
+            }
+        }
+    }
+
+    .terminal-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+
+        .line {
+            height: 1px;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, #374151);
+
+            &:last-child {
+                background: linear-gradient(-90deg, transparent, #374151);
+            }
+        }
+
+        .terminal-icon {
+            color: #4b5563;
+        }
+    }
+
+    .copyright-section {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.75rem;
+        color: #4b5563;
+
+        .build-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+
+            .heart-icon {
+                color: rgba(0, 229, 255, 0.5);
+            }
+        }
+
+        .rights-info {
+            color: #374151;
+            margin: 0;
+        }
+    }
+}

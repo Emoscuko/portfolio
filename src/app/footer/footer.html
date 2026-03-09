@@ -1,0 +1,54 @@
+<footer class="footer-container" [class.fitness-theme]="theme === 'fitness'" [@reveal]>
+    <!-- Gradient Divider -->
+    <div class="top-divider"></div>
+
+    <div class="footer-content max-w-4xl">
+        <!-- Heading Section -->
+        <div class="heading-section">
+            <span class="tagline">{{ footerText.tagline }}</span>
+            <h2 class="title">
+                {{ footerText.title1 }} <span class="accent">{{ footerText.title2 }}</span>
+            </h2>
+            <p class="description">
+                {{ footerText.description }}
+            </p>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-links-container">
+            @for (link of socialLinks; track link.name) {
+            <a [href]="link.url" target="_blank" [attr.aria-label]="link.name" class="social-button">
+                <img [src]="link.iconSrc" width="20" height="20" [alt]="link.name" class="social-icon">
+            </a>
+            }
+        </div>
+
+        <!-- Terminal Divider -->
+        <div class="terminal-divider">
+            <div class="line"></div>
+            <svg class="terminal-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 17 10 11 4 5"></polyline>
+                <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+            <div class="line"></div>
+        </div>
+
+        <!-- Copyright Section -->
+        <div class="copyright-section">
+            <div class="build-info">
+                <span>&gt;</span>
+                <span>Built with</span>
+                <svg class="heart-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.84-8.84 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                    </path>
+                </svg>
+                <span>by Emirhan Atar</span>
+            </div>
+            <p class="rights-info">
+                &copy; {{ currentYear }} &mdash; All Rights Reserved.
+            </p>
+        </div>
+    </div>
+</footer>

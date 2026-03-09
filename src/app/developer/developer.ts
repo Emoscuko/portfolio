@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TimelineComponent } from '../timeline/timeline';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
+import { FooterComponent } from '../footer/footer';
 import { DEVELOPER_SOCIALS, DEVELOPER_PROJECTS, DEVELOPER_TIMELINE } from '../data/developer.data';
 
 @Component({
   selector: 'app-developer',
-  imports: [RouterLink, TimelineComponent, ScrollRevealDirective],
+  imports: [RouterLink, TimelineComponent, ScrollRevealDirective, FooterComponent],
   templateUrl: './developer.html',
   styleUrl: './developer.scss'
 })
