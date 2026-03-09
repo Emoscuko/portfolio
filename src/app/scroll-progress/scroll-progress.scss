@@ -1,0 +1,32 @@
+.scroll-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.05);
+    z-index: 10001;
+    pointer-events: none;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s ease-out;
+    will-change: width;
+    background-image: var(--scroll-gradient);
+    background-size: 100vw 100%;
+    background-attachment: fixed;
+    box-shadow: 0 0 10px var(--scroll-glow);
+}
+
+/* Themes */
+.scroll-progress-bar.dev {
+    --scroll-gradient: linear-gradient(to right, #001f3f, #00E5FF, #7F00FF, #E100FF, #00E5FF);
+    --scroll-glow: rgba(0, 229, 255, 0.7);
+}
+
+.scroll-progress-bar.fitness {
+    --scroll-gradient: linear-gradient(to right, #800000, #FF004C, #FF5E00, #FFB700, #CCFF00);
+    --scroll-glow: rgba(255, 94, 0, 0.7);
+}

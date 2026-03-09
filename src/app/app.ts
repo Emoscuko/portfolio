@@ -1,6 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { trigger, transition, style, query, animate, group } from '@angular/animations';
+import { CursorComponent } from './cursor/cursor';
+import { ScrollProgressComponent } from './scroll-progress/scroll-progress';
 
 export const slideInAnimation = trigger('routeAnimations', [
   transition('* <=> *', [
@@ -29,7 +31,7 @@ export const slideInAnimation = trigger('routeAnimations', [
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CursorComponent, ScrollProgressComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   animations: [slideInAnimation]

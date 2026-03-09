@@ -12,7 +12,7 @@
                 [class.fitness-line]="theme === 'fitness'"></div>
 
             <div class="timeline-items">
-                <div class="timeline-row" *ngFor="let item of items; let i = index; let isEven = even">
+                <div class="timeline-row" *ngFor="let item of items; let i = index; let isEven = even" appScrollReveal>
                     <!-- Dot -->
                     <div class="timeline-dot" [style.border-color]="getTypeConfig(item.type).color"
                         [style.box-shadow]="'0 0 8px ' + getTypeConfig(item.type).color + '50'">
@@ -24,7 +24,11 @@
                             <div class="card-header">
                                 <div class="icon-box" [style.background-color]="getTypeConfig(item.type).color + '15'"
                                     [style.border-color]="getTypeConfig(item.type).color + '25'">
+                                    @if (item.iconSrc) {
+                                    <img [src]="item.iconSrc" alt="icon" class="icon-img" />
+                                    } @else {
                                     <span class="icon">{{ getTypeConfig(item.type).icon }}</span>
+                                    }
                                 </div>
                                 <div class="type-label-container">
                                     <span class="type-label" [style.color]="getTypeConfig(item.type).color">

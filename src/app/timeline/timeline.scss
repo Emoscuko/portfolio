@@ -156,6 +156,13 @@
         justify-content: center;
         border: 1px solid;
         font-size: 14px;
+        overflow: hidden;
+
+        .icon-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     .type-label-container {

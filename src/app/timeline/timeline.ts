@@ -1,6 +1,7 @@
 // timeline.ts
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 
 export interface TimelineItem {
     year: string;
@@ -9,12 +10,13 @@ export interface TimelineItem {
     description: string;
     type: "education" | "work" | "certification";
     tags?: string[];
+    iconSrc?: string;
 }
 
 @Component({
     selector: 'app-timeline',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, ScrollRevealDirective],
     templateUrl: './timeline.html',
     styleUrl: './timeline.scss'
 })

@@ -25,14 +25,14 @@
         </div>
     </nav>
 
-    <header class="dev-header" id="main">
+    <header class="dev-header" id="main" appScrollReveal>
         <h1>Engineering & Architecture</h1>
         <p class="subtitle" id="about">Building scalable systems and immersive experiences</p>
     </header>
 
     <main class="content-grid" id="projects">
         @for (project of projects; track project.id) {
-        <section class="card" [class]="project.visualClass">
+        <section class="card" [class]="project.visualClass" appScrollReveal>
             <div class="card-content">
                 <h3>{{ project.title }}</h3>
                 <p>{{ project.description }}</p>

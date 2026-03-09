@@ -1,0 +1,51 @@
+/* Only show custom cursor on devices with a real mouse pointer */
+@media (pointer: fine) {
+    .cursor-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 99999;
+        transition: opacity 0.3s ease;
+    }
+
+    .cursor-dot {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 12px;
+        height: 12px;
+        margin: -6px 0 0 -6px;
+        border-radius: 50%;
+        background-color: var(--cursor-color);
+        transform-origin: center center;
+        transition: background-color 0.3s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+        box-shadow: 0 0 10px var(--cursor-color);
+        will-change: transform;
+    }
+
+    /* Themes */
+    .cursor-wrapper.dev {
+        --cursor-color: #00E5FF;
+        --cursor-glow: rgba(0, 229, 255, 0.4);
+    }
+
+    .cursor-wrapper.fitness {
+        --cursor-color: #FF5E00;
+        --cursor-glow: rgba(255, 94, 0, 0.4);
+    }
+
+    /* Hover State */
+    .cursor-wrapper.hover-state {
+        .cursor-dot {
+            width: 30px;
+            height: 30px;
+            margin: -15px 0 0 -15px;
+            background-color: var(--cursor-glow);
+            box-shadow: 0 0 15px var(--cursor-glow);
+            backdrop-filter: blur(2px);
+        }
+    }
+}

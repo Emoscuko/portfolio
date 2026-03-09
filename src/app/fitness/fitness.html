@@ -28,7 +28,7 @@
 
     <main class="content-container" id="main">
 
-        <section class="hero-section" id="about">
+        <section class="hero-section" id="about" appScrollReveal>
             <div class="hero-content">
                 <h2 class="slogan">Lift Heavy, Eat Clean, Stay Dedicated.</h2>
                 <p class="slogan-desc">Transforming the mind and the body through rigorous daily persistence.</p>
@@ -38,7 +38,7 @@
             </div>
         </section>
 
-        <section class="split-section" id="weekly-program">
+        <section class="split-section" id="weekly-program" appScrollReveal>
             <h2 class="section-title">Weekly Program</h2>
             <div class="split-grid">
                 @for (day of weeklyWorkout; track day.id) {
@@ -54,7 +54,7 @@
             </div>
         </section>
 
-        <section class="diet-section" id="diet-program">
+        <section class="diet-section" id="diet-program" appScrollReveal>
             <h2 class="section-title">Beslenme Planı (Diet Plan)</h2>
             <div class="diet-grid">
                 @for (meal of dietPlan; track meal.id) {

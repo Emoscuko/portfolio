@@ -100,11 +100,12 @@ export const DEVELOPER_TIMELINE: TimelineItem[] = [
 
     {
         year: "2025",
-        title: "Intern",
+        title: "RevloAI Internship",
         subtitle: "Azure and Backend (Golang) Intern",
-        description: "Working on Azure and Backend technologies.",
+        description: "Architected an Azure-based backend for a hospitality analytics platform, utilizing AI-driven sentiment and intent analysis to transform guest feedback into actionable insights and automated operational recommendations.",
         type: "work",
         tags: ["Internship", "Azure", "Backend", "Go"],
+        iconSrc: "/RevloAiIcon.jpeg",
     },
 
     {

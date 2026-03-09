@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TimelineComponent } from '../timeline/timeline';
+import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { FITNESS_SOCIALS, WEEKLY_WORKOUT, DIET_PLAN, FITNESS_TIMELINE } from '../data/fitness.data';
 
 @Component({
   selector: 'app-fitness',
-  imports: [RouterLink, TimelineComponent],
+  imports: [RouterLink, TimelineComponent, ScrollRevealDirective],
   templateUrl: './fitness.html',
   styleUrl: './fitness.scss',
 })
