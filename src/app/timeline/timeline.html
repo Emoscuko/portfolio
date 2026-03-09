@@ -26,6 +26,8 @@
                                     [style.border-color]="getTypeConfig(item.type).color + '25'">
                                     @if (item.iconSrc) {
                                     <img [src]="item.iconSrc" alt="icon" class="icon-img" />
+                                    } @else if (item.customIcon) {
+                                    <span class="icon">{{ item.customIcon }}</span>
                                     } @else {
                                     <span class="icon">{{ getTypeConfig(item.type).icon }}</span>
                                     }

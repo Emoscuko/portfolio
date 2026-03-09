@@ -11,6 +11,7 @@ export interface TimelineItem {
     type: "education" | "work" | "certification";
     tags?: string[];
     iconSrc?: string;
+    customIcon?: string;
 }
 
 @Component({

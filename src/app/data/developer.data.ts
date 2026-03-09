@@ -87,10 +87,11 @@ export const DEVELOPER_TIMELINE: TimelineItem[] = [
     },
     {
         year: "2020 - 2022",
-        title: "YKS results",
+        title: "Medicine Faculty",
         subtitle: "Got into Istanbul Yeniyuzyil University Medicine Faculty",
-        description: "Apperantly this was a wrong choice for me, so I changed my Faculty.",
+        description: "Apperantly this was a wrong choice for me, but i had very good time since im also into health.",
         type: "education",
+        iconSrc: "/CaduceusIcon.jpg.avif",
     },
     {
         year: "2022",
@@ -117,6 +118,7 @@ export const DEVELOPER_TIMELINE: TimelineItem[] = [
         description: "Creating a 2D game called Slime Hunter for learning purposes (Self taught).",
         type: "work",
         tags: ["Game Development", "Unity", "C#"],
+        iconSrc: "/SlimeHunterIcon.png",
     },
 
     {
