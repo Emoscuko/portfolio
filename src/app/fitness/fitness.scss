@@ -371,6 +371,8 @@
             max-width: 100%;
             flex-shrink: 0;
             padding-bottom: 1rem;
+            position: relative;
+            z-index: 2;
 
             .hero-name {
                 letter-spacing: -2px;
@@ -382,12 +384,19 @@
         }
 
         .hero-image-side {
-            flex: 1;
-            min-height: 0;
-            align-self: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 0;
+            flex: none;
+            align-self: auto;
 
             .emo-body-img {
-                max-height: 100%;
+                width: 80vw;
+                max-width: none;
+                max-height: none;
+                height: auto;
             }
         }
     }
