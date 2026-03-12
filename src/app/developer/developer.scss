@@ -58,24 +58,6 @@
                 box-shadow: 0 0 10px #00E5FF;
             }
         }
-
-        .brand {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
-        }
-
-        .side-tag {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            font-weight: 600;
-            background: rgba(0, 229, 255, 0.1);
-            color: #00E5FF;
-            border: 1px solid rgba(0, 229, 255, 0.3);
-        }
     }
 
     .nav-links {
@@ -140,16 +122,6 @@
     .top-navbar {
         padding: 0 1rem;
         height: 60px;
-
-        .logo {
-            .side-tag {
-                display: none;
-            }
-
-            .brand {
-                display: none;
-            }
-        }
 
         .nav-links {
             .nav-link {
