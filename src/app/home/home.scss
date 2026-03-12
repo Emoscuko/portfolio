@@ -3,14 +3,17 @@
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    background-color: #121212;
+    background-color: #050505;
+    position: relative;
+
+
 
     .panel {
         flex: 1 1 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: flex 0.4s ease-in-out, opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        transition: flex 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
         cursor: pointer;
         position: relative;
         overflow: hidden;
@@ -18,133 +21,159 @@
         &::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.05) 0%, transparent 50%);
             opacity: 0;
-            transition: opacity 0.4s ease-in-out;
-            z-index: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
         }
 
         .content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             text-align: center;
             color: white;
             padding: 0 2rem;
-            transition: transform 0.4s ease-in-out;
             width: 50vw;
             flex-shrink: 0;
+            transition: transform 0.1s ease-out; // Snappy tilt, smooth growth is handled by flex
+            pointer-events: none; // Let events pass to panel
 
             .subtitle {
-                font-size: 1rem;
-                letter-spacing: 4px;
-                margin-bottom: 1rem;
-                opacity: 0.7;
+                font-size: 0.8rem;
+                letter-spacing: 6px;
+                margin-bottom: 1.5rem;
+                opacity: 0.5;
+                text-transform: uppercase;
+                transition: all 0.5s ease;
             }
 
             h1 {
-                font-size: clamp(2rem, 4vw, 4rem);
-                font-weight: 800;
+                font-size: clamp(2.5rem, 6vw, 5rem);
+                font-weight: 900;
                 text-transform: uppercase;
-                letter-spacing: 2px;
-                line-height: 1.1;
-                margin: 0 0 2rem 0;
-                text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-                transition: color 0.4s ease-in-out, transform 0.4s ease-in-out;
+                letter-spacing: -1px;
+                line-height: 0.9;
+                margin: 0 0 2.5rem 0;
+                transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+                filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
             }
 
             .cta {
-                display: inline-block;
-                padding: 10px 24px;
-                border: 1px solid rgba(255, 255, 255, 0.3);
-                border-radius: 30px;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.8rem;
+                padding: 12px 32px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 40px;
                 text-transform: uppercase;
-                letter-spacing: 1px;
-                font-size: 0.9rem;
-                transition: all 0.3s ease;
-                opacity: 0;
+                letter-spacing: 2px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                background: rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(10px);
+                transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+                opacity: 0.4;
                 transform: translateY(20px);
             }
         }
-    }
-
-    .dev-panel {
-        border-right: 1px solid rgba(255, 255, 255, 0.05);
-        background: linear-gradient(rgba(18, 18, 18, 0.5), rgba(18, 18, 18, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.05"><rect width="100" height="100" fill="none" stroke="%23fff" stroke-width="1"/></svg>');
-
-        &::before {
-            background: radial-gradient(circle at center, rgba(0, 229, 255, 0.15) 0%, transparent 60%);
-        }
 
         &:hover {
-            .content h1 {
-                color: #00E5FF;
-            }
-
-            .content .cta {
-                opacity: 1;
-                transform: translateY(0);
-                border-color: #00E5FF;
-                background: rgba(0, 229, 255, 0.1);
-                color: #00E5FF;
-            }
-        }
-    }
-
-    .fitness-panel {
-        background: linear-gradient(rgba(18, 18, 18, 0.6), rgba(18, 18, 18, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" opacity="0.05"><circle cx="5" cy="5" r="1" fill="%23fff"/></svg>');
-
-        &::before {
-            background: radial-gradient(circle at center, rgba(255, 94, 0, 0.15) 0%, transparent 60%);
-        }
-
-        &:hover {
-            .content h1 {
-                color: #FF5E00;
-            }
-
-            .content .cta {
-                opacity: 1;
-                transform: translateY(0);
-                border-color: #FF5E00;
-                background: rgba(255, 94, 0, 0.1);
-                color: #FF5E00;
-            }
-        }
-    }
-
-    &:hover {
-        .panel {
-            opacity: 0.5;
-        }
-
-        .panel:hover {
-            flex: 1 1 65%;
-            opacity: 1;
-
             &::before {
                 opacity: 1;
             }
 
             .content {
-                transform: scale(1.1);
+                .subtitle {
+                    opacity: 0.9;
+                    letter-spacing: 8px;
+                }
+
+                h1 {
+                    transform: scale(1.05);
+                }
+
+                .cta {
+                    opacity: 1;
+                    transform: translateY(0);
+                    border-color: rgba(255, 255, 255, 0.4);
+                    background: rgba(255, 255, 255, 0.1);
+                    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+                }
             }
         }
+    }
 
+    .dev-panel {
+        background: #0a0f16;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
+            z-index: 10;
+            pointer-events: none;
+            transform: translateX(50%);
+        }
+
+        &:hover {
+            h1 {
+                color: #00E5FF;
+                text-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+            }
+            .cta {
+                color: #00E5FF;
+                border-color: rgba(0, 229, 255, 0.4) !important;
+                box-shadow: 0 15px 40px rgba(0, 229, 255, 0.2) !important;
+            }
+        }
+    }
+
+    .fitness-panel {
+        background: #140a05;
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom left, rgba(255, 94, 0, 0.05), transparent);
+            pointer-events: none;
+        }
+
+        &:hover {
+            h1 {
+                color: #FF5E00;
+                text-shadow: 0 0 30px rgba(255, 94, 0, 0.4);
+            }
+            .cta {
+                color: #FF5E00;
+                border-color: rgba(255, 94, 0, 0.4) !important;
+                box-shadow: 0 15px 40px rgba(255, 94, 0, 0.2) !important;
+            }
+        }
+    }
+
+    // Interactive growth logic
+    &:hover {
+        .panel {
+            opacity: 0.3;
+        }
+        .panel:hover {
+            flex: 1 1 65%;
+            opacity: 1;
+        }
         .panel:not(:hover) {
             flex: 1 1 35%;
-
-            .content {
-                transform: scale(0.85);
-            }
         }
     }
 
     .main-social-footer {
         position: absolute;
-        bottom: 2rem;
+        bottom: 3rem;
         left: 50%;
         transform: translateX(-50%);
         z-index: 100;
@@ -152,38 +181,40 @@
         .main-ig-link {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
             color: #fff;
             text-decoration: none;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            font-weight: 500;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            font-size: 0.85rem;
+            font-weight: 600;
+            backdrop-filter: blur(20px);
             letter-spacing: 1px;
-
-            .ig-icon {
-                transition: transform 0.3s;
-            }
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 
             &:hover {
                 background: rgba(255, 255, 255, 1);
-                color: #121212;
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-
-                .ig-icon {
-                    transform: scale(1.1);
-                }
+                color: #000;
+                transform: translateY(-5px) scale(1.05);
+                box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
             }
         }
     }
 
-
-    /* ── Mobile: stack panels vertically (divided on the x axis) ── */
+    /* Mobile Dynamics */
     @media (max-width: 768px) {
         flex-direction: column;
+
+        &::after {
+            width: 100%;
+            height: 1px;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
 
         .panel {
             flex: 1 1 50%;
@@ -192,72 +223,47 @@
             .content {
                 width: 100%;
                 padding: 0 1.5rem;
+                transform: none !important; // Disable tilt on mobile
 
                 .subtitle {
-                    font-size: 0.75rem;
-                    letter-spacing: 3px;
+                    font-size: 0.7rem;
+                    letter-spacing: 4px;
+                    opacity: 0.7;
                 }
 
                 h1 {
-                    font-size: clamp(1.6rem, 8vw, 2.5rem);
-                    margin: 0 0 1.2rem 0;
+                    font-size: clamp(2rem, 10vw, 3rem);
+                    margin: 0 0 1.5rem 0;
                 }
 
                 .cta {
-                    font-size: 0.8rem;
-                    padding: 8px 18px;
-                    /* Always visible on mobile — no hover state */
                     opacity: 1;
                     transform: translateY(0);
+                    padding: 10px 24px;
+                    background: rgba(255, 255, 255, 0.05);
                 }
             }
+            
+            // Auto-pulse on mobile since there is no hover
+            animation: breathing 4s ease-in-out infinite;
         }
 
         .dev-panel {
-            border-right: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-
-            .content .cta {
-                border-color: #00E5FF;
-                background: rgba(0, 229, 255, 0.1);
-                color: #00E5FF;
-            }
+            animation-delay: 0s;
         }
 
         .fitness-panel {
-            .content .cta {
-                border-color: #FF5E00;
-                background: rgba(255, 94, 0, 0.1);
-                color: #FF5E00;
-            }
+            animation-delay: 2s;
         }
 
-        /* Disable hover expansion on mobile */
-        &:hover {
-            .panel {
-                opacity: 1;
-                flex: 1 1 50%;
-            }
-
-            .panel:hover {
-                flex: 1 1 50%;
-
-                .content {
-                    transform: none;
-                }
-            }
-
-            .panel:not(:hover) {
-                flex: 1 1 50%;
-
-                .content {
-                    transform: none;
-                }
-            }
-        }
-
-        .main-social-footer {
-            bottom: 1rem;
+        &:hover .panel {
+            opacity: 1;
+            flex: 1 1 50%;
         }
     }
+}
+
+@keyframes breathing {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
 }

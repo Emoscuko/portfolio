@@ -42,20 +42,26 @@ export const DEVELOPER_SOCIALS: SocialLink[] = [
 export const DEVELOPER_PROJECTS: ProjectCard[] = [
     {
         id: "unity-game",
-        title: "Unity Game Development",
-        description: "Current work Slime Hunter 2D Shooter game with my friend.",
+        title: "Slime Hunter",
+        description: "2D Shooter game released on App Store and Google Play.",
         techStack: ["C#", "Unity"],
         visualClass: "unity-card",
         mainImage: "/SlimeHunterIcon.png",
         links: [
             {
-                name: "SlimeHunter",
+                name: "App Store",
+                url: "https://apps.apple.com/tr/app/slime-hunter/id6759782275",
+                iconSrc: "https://cdn.simpleicons.org/appstore/007AFF",
+                cssClass: "game-link"
+            },
+            {
+                name: "Google Play",
                 url: "https://play.google.com/store/apps/details?id=com.pixelcorsairs.slimehunter&pli=1",
                 iconSrc: "https://cdn.simpleicons.org/googleplay/41BA7A",
                 cssClass: "game-link"
             },
             {
-                name: "SlimeHunter",
+                name: "Instagram",
                 url: "https://www.instagram.com/slimehunter2026/",
                 iconSrc: "https://cdn.simpleicons.org/instagram/E4405F",
                 cssClass: "game-link"
@@ -115,7 +121,7 @@ export const DEVELOPER_TIMELINE: TimelineItem[] = [
         year: "2025",
         title: "Slime Hunter",
         subtitle: "Game Developer",
-        description: "Developing a 2D game called Slime Hunter for learning purposes.",
+        description: "Developed and released 2D shooter game Slime Hunter on App Store and Google Play.",
         type: "work",
         tags: ["Game Development", "Unity", "C#"],
         iconSrc: "/SlimeHunterIcon.png",

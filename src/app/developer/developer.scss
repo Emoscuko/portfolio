@@ -7,33 +7,86 @@
     position: relative;
     overflow-x: hidden;
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 50vh;
-        background: radial-gradient(ellipse at top, rgba(0, 229, 255, 0.1) 0%, transparent 60%);
+    .global-bg-fx {
+        position: fixed;
+        inset: 0;
         pointer-events: none;
         z-index: 0;
+        overflow: hidden;
+        background: radial-gradient(circle at 50% 50%, #0a0f16 0%, #050505 100%);
+
+        .hero-glow {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 800px;
+            max-height: 800px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.15) 0%, transparent 60%);
+            border-radius: 50%;
+            filter: blur(50px);
+            animation: pulseGlow 6s ease-in-out infinite alternate;
+        }
+
+        .hero-grid {
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image:
+                linear-gradient(rgba(0, 229, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.1) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: perspective(600px) rotateX(75deg);
+            transform-origin: center center;
+            animation: gridMove 15s linear infinite;
+            mask-image: radial-gradient(circle at center, black 0%, transparent 60%);
+        }
+
+        .floating-data {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(0, 229, 255, 0.5) 1px, transparent 1px),
+                radial-gradient(circle at 80% 40%, rgba(0, 229, 255, 0.5) 1px, transparent 1px),
+                radial-gradient(circle at 40% 70%, rgba(0, 229, 255, 0.5) 1px, transparent 1px),
+                radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.5) 1px, transparent 1px);
+            background-size: 150px 150px;
+            animation: dataDrift 20s linear infinite;
+            opacity: 0.4;
+        }
     }
 }
 
 .top-navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 70px;
-    background: rgba(18, 18, 18, 0.7);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1000px;
+    height: 64px;
+    background: rgba(10, 15, 20, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    border-radius: 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 1.5rem 0 0.5rem;
     z-index: 1000;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    &:hover {
+        border-color: rgba(0, 229, 255, 0.4);
+        box-shadow: 0 15px 50px rgba(0, 229, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        background: rgba(10, 15, 20, 0.65);
+    }
 
     .logo {
         display: flex;
@@ -46,16 +99,18 @@
             justify-content: center;
             color: #00E5FF;
             text-decoration: none;
-            padding: 0.4rem;
-            border-radius: 8px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
             background: rgba(0, 229, 255, 0.1);
-            border: 1px solid rgba(0, 229, 255, 0.3);
+            border: 1px solid rgba(0, 229, 255, 0.2);
             transition: all 0.3s ease;
 
             &:hover {
                 background: #00E5FF;
                 color: #121212;
-                box-shadow: 0 0 10px #00E5FF;
+                box-shadow: 0 0 15px #00E5FF;
+                transform: scale(1.05);
             }
         }
     }
@@ -120,8 +175,11 @@
 
 @media (max-width: 768px) {
     .top-navbar {
-        padding: 0 1rem;
-        height: 60px;
+        top: 1rem;
+        width: 95%;
+        height: 56px;
+        padding: 0 1rem 0 0.4rem;
+        border-radius: 28px;
 
         .nav-links {
             .nav-link {
@@ -151,35 +209,6 @@
     justify-content: center;
     overflow: hidden;
 
-    .hero-bg-fx {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: 0;
-
-        .hero-glow {
-            position: absolute;
-            top: 5%;
-            right: 5%;
-            width: 55vw;
-            height: 55vw;
-            max-width: 700px;
-            max-height: 700px;
-            background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 65%);
-            border-radius: 50%;
-            filter: blur(40px);
-        }
-
-        .hero-grid {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 25%, rgba(0, 0, 0, 0.6) 75%, transparent 100%);
-        }
-    }
 
     .hero-body {
         position: relative;
@@ -340,9 +369,19 @@
 }
 
 @keyframes scrollDrop {
-    0%   { top: -50%; opacity: 0; }
-    30%  { opacity: 1; }
-    100% { top: 120%; opacity: 0; }
+    0% {
+        top: -50%;
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 120%;
+        opacity: 0;
+    }
 }
 
 .project-links {
@@ -357,27 +396,32 @@
         gap: 0.5rem;
         color: #fff;
         text-decoration: none;
-        padding: 0.3rem 0.8rem;
-        border-radius: 20px;
-        background: rgba(0, 229, 255, 0.1);
-        border: 1px solid rgba(0, 229, 255, 0.3);
-        transition: all 0.3s ease;
-        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
+        border-radius: 24px;
+        background: rgba(0, 229, 255, 0.05);
+        border: 1px solid rgba(0, 229, 255, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        font-size: 0.85rem;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
         &:hover {
-            background: #00E5FF;
-            color: #121212;
-            box-shadow: 0 0 10px #00E5FF;
+            transform: translateY(-2px);
+            background: rgba(0, 229, 255, 0.15);
+            color: #fff; /* Keep white on hover for better contrast */
+            box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 229, 255, 0.4);
         }
 
         &.game-link {
             border-color: rgba(183, 0, 255, 0.3);
-            background: rgba(183, 0, 255, 0.1);
+            background: rgba(183, 0, 255, 0.05);
 
             &:hover {
-                background: #b700ff;
-                color: #fff;
-                box-shadow: 0 0 10px #b700ff;
+                background: rgba(183, 0, 255, 0.2);
+                border-color: rgba(183, 0, 255, 0.5);
+                box-shadow: 0 5px 15px rgba(183, 0, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             }
         }
     }
@@ -401,16 +445,35 @@
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    background: rgba(10, 15, 20, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.5), transparent);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
 
     &:hover {
-        transform: translateY(-5px);
-        border-color: rgba(0, 229, 255, 0.3);
-        box-shadow: 0 10px 30px rgba(0, 229, 255, 0.05);
+        transform: translateY(-8px);
+        border-color: rgba(0, 229, 255, 0.4);
+        box-shadow: 0 20px 40px rgba(0, 229, 255, 0.15), inset 0 0 20px rgba(0, 229, 255, 0.05);
+        background: rgba(10, 15, 20, 0.7);
+        
+        &::before {
+            opacity: 1;
+        }
     }
 
     h3 {
@@ -433,12 +496,16 @@
     gap: 0.5rem;
 
     span {
-        background: rgba(0, 229, 255, 0.1);
+        background: rgba(0, 229, 255, 0.05);
         color: #00E5FF;
-        padding: 0.25rem 0.75rem;
-        border-radius: 4px;
+        border: 1px solid rgba(0, 229, 255, 0.2);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
         font-size: 0.85rem;
         font-weight: 500;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
 }
 
