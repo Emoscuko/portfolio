@@ -113,9 +113,9 @@ export const DEVELOPER_TIMELINE: TimelineItem[] = [
 
     {
         year: "2025",
-        title: "Slime Hunter (2D Game)",
+        title: "Slime Hunter",
         subtitle: "Game Developer",
-        description: "Creating a 2D game called Slime Hunter for learning purposes (Self taught).",
+        description: "Developing a 2D game called Slime Hunter for learning purposes.",
         type: "work",
         tags: ["Game Development", "Unity", "C#"],
         iconSrc: "/SlimeHunterIcon.png",

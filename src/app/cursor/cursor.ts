@@ -19,7 +19,7 @@ export class CursorComponent implements OnInit, OnDestroy {
     private dotY = -100;
 
     opacity = signal(0);
-    theme = signal<'dev' | 'fitness'>('dev');
+    theme = signal<'dev' | 'fitness' | 'home'>('home');
     isHovering = signal(false);
 
     private cursorSpeed = 0.15;
@@ -29,8 +29,11 @@ export class CursorComponent implements OnInit, OnDestroy {
         this.router.events
             .pipe(filter(event => event instanceof NavigationEnd))
             .subscribe((event: any) => {
-                if (event.urlAfterRedirects.includes('/fitness')) {
+                const url = event.urlAfterRedirects;
+                if (url.includes('/fitness')) {
                     this.theme.set('fitness');
+                } else if (url === '/' || url === '') {
+                    this.theme.set('home');
                 } else {
                     this.theme.set('dev');
                 }
@@ -38,8 +41,13 @@ export class CursorComponent implements OnInit, OnDestroy {
 
         // Check initial route safely (for initial render)
         setTimeout(() => {
-            if (this.router.url.includes('/fitness')) {
+            const url = this.router.url;
+            if (url.includes('/fitness')) {
                 this.theme.set('fitness');
+            } else if (url === '/' || url === '') {
+                this.theme.set('home');
+            } else {
+                this.theme.set('dev');
             }
         }, 0);
 
@@ -66,7 +74,8 @@ export class CursorComponent implements OnInit, OnDestroy {
     onMouseOver(event: MouseEvent) {
         const target = event.target as HTMLElement;
         const isClickable = !!target.closest('a, button, [routerLink], input, select, textarea, .nav-link, .split-screen-btn, .social-link');
-        this.isHovering.set(isClickable);
+        // Hover-expand is disabled on the home page
+        this.isHovering.set(this.theme() !== 'home' && isClickable);
     }
 
     @HostListener('document:mouseout', ['$event'])

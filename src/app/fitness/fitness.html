@@ -26,18 +26,42 @@
         </div>
     </nav>
 
-    <main class="content-container" id="main">
+    <!-- Full-Screen Hero — outside content-container for full width -->
+    <section class="hero-landing" id="main" appScrollReveal>
+        <div class="hero-bg-fx">
+            <div class="hero-glow"></div>
+        </div>
 
-        <section class="hero-section" id="about" appScrollReveal>
-            <div class="hero-content">
-                <h2 class="slogan">Lift Heavy, Eat Clean, Stay Dedicated.</h2>
-                <p class="slogan-desc">Transforming the mind and the body through rigorous daily persistence.</p>
-            </div>
-            <div class="hero-image-container">
-                <img src="/EmoBody.png" alt="EmoBody" class="emo-body-img" />
-            </div>
-        </section>
+        <div class="hero-body" id="about">
+            <span class="hero-eyebrow">LIFESTYLE · BODYBUILDING</span>
+            <h1 class="hero-name">
+                Emirhan<br>
+                <span class="name-accent">Atar</span>
+            </h1>
+            <p class="hero-slogan">Lift Heavy,<br>Eat Clean, Stay Dedicated.</p>
+            <p class="hero-desc">Transforming mind and body through rigorous daily persistence.</p>
+            <a href="#weekly-program" class="hero-cta">
+                View My Program
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                </svg>
+            </a>
+        </div>
 
+        <div class="hero-image-side">
+            <img src="/EmoBody.png" alt="Emirhan Atar" class="emo-body-img" />
+        </div>
+
+        <div class="hero-scroll-hint">
+            <span class="scroll-label">Scroll</span>
+            <div class="scroll-track"><div class="scroll-thumb"></div></div>
+        </div>
+    </section>
+
+    <!-- Remaining sections in the centered container -->
+    <main class="content-container">
         <section class="split-section" id="weekly-program" appScrollReveal>
             <h2 class="section-title">Weekly Program</h2>
             <div class="split-grid">

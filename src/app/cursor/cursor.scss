@@ -1,5 +1,11 @@
 /* Only show custom cursor on devices with a real mouse pointer */
 @media (pointer: fine) {
+    @keyframes rainbow-cursor {
+        0%   { background-color: #00E5FF; box-shadow: 0 0 14px 4px #00E5FF; }
+        50%  { background-color: #FF5E00; box-shadow: 0 0 14px 4px #FF5E00; }
+        100% { background-color: #00E5FF; box-shadow: 0 0 14px 4px #00E5FF; }
+    }
+
     .cursor-wrapper {
         position: fixed;
         top: 0;
@@ -37,6 +43,15 @@
         --cursor-glow: rgba(255, 94, 0, 0.4);
     }
 
+    /* Home – Rainbow animated cursor */
+    .cursor-wrapper.home {
+        .cursor-dot {
+            animation: rainbow-cursor 2.5s linear infinite;
+            /* Override transition so color changes are animated by keyframes, not CSS transition */
+            transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+        }
+    }
+
     /* Hover State */
     .cursor-wrapper.hover-state {
         .cursor-dot {
@@ -48,4 +63,5 @@
             backdrop-filter: blur(2px);
         }
     }
+
 }

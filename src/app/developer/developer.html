@@ -25,10 +25,43 @@
         </div>
     </nav>
 
-    <header class="dev-header" id="main" appScrollReveal>
-        <h1>Engineering & Architecture</h1>
-        <p class="subtitle" id="about">Building scalable systems and immersive experiences</p>
-    </header>
+
+    <section class="hero-landing" id="main">
+        <div class="hero-bg-fx">
+            <div class="hero-glow"></div>
+            <div class="hero-grid"></div>
+        </div>
+        <div class="hero-body">
+            <span class="hero-eyebrow">PORTFOLIO · DEVELOPER</span>
+            <h1 class="hero-name">
+                Emirhan<br>
+                <span class="name-accent">Atar</span>
+            </h1>
+            <p class="hero-tagline" id="about">
+                Full-Stack &amp; Game Developer — crafting scalable backend systems and immersive interactive experiences.
+            </p>
+            <div class="hero-chips">
+                <span>Go</span>
+                <span>Angular</span>
+                <span>Azure</span>
+                <span>Unity</span>
+                <span>C#</span>
+            </div>
+            <a href="#projects" class="hero-cta">
+                Explore My Work
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                </svg>
+            </a>
+        </div>
+        <div class="hero-scroll-hint">
+            <span class="scroll-label">Scroll</span>
+            <div class="scroll-track"><div class="scroll-thumb"></div></div>
+        </div>
+    </section>
+
 
     <main class="content-grid" id="projects">
         @for (project of projects; track project.id) {
