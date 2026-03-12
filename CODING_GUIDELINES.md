@@ -6,6 +6,7 @@ This document serves as the core coding guideline and architectural reference fo
 
 ### Component-Driven Design
 - **Single Responsibility Principle (SRP):** Each component should do one thing perfectly. If a component (e.g., a page like `Developer` or `Fitness`) grows too large (e.g., > 150 lines of HTML), break it down into smaller, reusable UI components (e.g., `TimelineComponent`, `ProjectCardComponent`, `MealCardComponent`).
+- **Side Independence (Developer vs. Fitness):** Treat the **Developer** and **Fitness** sides as distinct, independent vertical modules. While they may share minor utility patterns or global styles today, they should **not** be forced into a single shared structure. Later developments will cause these sides to diverge significantly in structure, data, and logic. Avoid over-abstracting their core layouts together; prioritize the flexibility for each side to evolve its own unique identity.
 - **Encapsulation:** Keep styles, templates, and logic self-contained within the component directory. Use Angular's `ViewEncapsulation` to prevent style leakage unless global scope is explicitly required.
 
 ### Data & State Management
