@@ -362,14 +362,15 @@
     /* Mobile */
     @media (max-width: 900px) {
         flex-direction: column;
-        padding: calc(60px + 2rem) 1.5rem 6rem;
+        height: 100vh;
+        padding: calc(60px + 2rem) 1.5rem 0;
         gap: 0;
         text-align: center;
-        justify-content: center;
 
         .hero-body {
             max-width: 100%;
-            order: 2;
+            flex-shrink: 0;
+            padding-bottom: 1rem;
 
             .hero-name {
                 letter-spacing: -2px;
@@ -381,13 +382,12 @@
         }
 
         .hero-image-side {
-            order: 1;
+            flex: 1;
+            min-height: 0;
             align-self: center;
-            max-height: 38vh;
-            flex: 0;
 
             .emo-body-img {
-                max-height: 38vh;
+                max-height: 100%;
             }
         }
     }
