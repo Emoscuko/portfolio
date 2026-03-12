@@ -15,10 +15,10 @@
             </a>
         </div>
         <div class="nav-links">
-            <a href="#main" class="nav-link">Main Page</a>
-            <a href="#about" class="nav-link">About Me</a>
-            <a href="#diet-program" class="nav-link">Diet Program</a>
-            <a href="#weekly-program" class="nav-link">Weekly Program</a>
+            <a [routerLink]="[]" fragment="main" class="nav-link">Main Page</a>
+            <a [routerLink]="[]" fragment="about" class="nav-link">About Me</a>
+            <a [routerLink]="[]" fragment="diet-program" class="nav-link">Diet Program</a>
+            <a [routerLink]="[]" fragment="weekly-program" class="nav-link">Weekly Program</a>
             <div class="nav-socials">
                 @for (social of socials; track social.name) {
                 <a [href]="social.url" target="_blank" class="nav-social-link" [title]="social.name">
