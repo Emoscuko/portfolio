@@ -36,6 +36,8 @@ This document serves as the core coding guideline and architectural reference fo
 
 - **Continuous Refactoring:** Before adding a new feature, assess if the existing code can be improved or abstracted to support the new feature more elegantly.
 - **Web Search Usage:** When encountering a unique architectural challenge or looking for modern UX/UI trends, proactively search the web for community-standard approaches.
+- **Favicon & Meta:** Yeni bir sayfa eklendiğinde Meta etiketlerinin eksiksiz olduğundan emin olun.
+
 
 ## 5. Development Standards
 - **Standalone Components:** This project uses modern Angular APIs. Always generate components as `standalone: true`.

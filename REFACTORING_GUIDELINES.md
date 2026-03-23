@@ -23,4 +23,3 @@ Bu doküman, portfolio projesinin sürdürülebilirliğini artırmak için gerek
 
 ## 5. SEO & Performans
 - **İkonlar ve Resimler:** Public klasöründeki büyük görselleri (`.png`, `.jpg`) mümkünse `.webp` veya `.avif` formatına çevirin.
-- **Favicon & Meta:** Yeni bir sayfa eklendiğinde Meta etiketlerinin eksiksiz olduğundan emin olun.
