@@ -42,9 +42,15 @@
                                 </div>
                             </div>
 
-                            <h3 class="item-title group-hover:text-cyber">{{ item.title }}</h3>
-                            <p class="item-subtitle">{{ item.subtitle }}</p>
-                            <p class="item-desc">{{ item.description }}</p>
+                            <h3 class="item-title group-hover:text-cyber">
+                                {{ langService.translate(item.title, item.titleTr || item.title) }}
+                            </h3>
+                            <p class="item-subtitle">
+                                {{ langService.translate(item.subtitle, item.subtitleTr || item.subtitle) }}
+                            </p>
+                            <p class="item-desc">
+                                {{ langService.translate(item.description, item.descriptionTr || item.description) }}
+                            </p>
 
                             <div class="tags" *ngIf="item.tags && item.tags.length > 0">
                                 <span class="tag" *ngFor="let tag of item.tags">{{ tag }}</span>

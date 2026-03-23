@@ -15,9 +15,9 @@
             </a>
         </div>
         <div class="nav-links">
-            <a [routerLink]="[]" fragment="main" class="nav-link">Main Page</a>
-            <a [routerLink]="[]" fragment="about" class="nav-link">About Me</a>
-            <a [routerLink]="[]" fragment="projects" class="nav-link">Projects</a>
+            <a [routerLink]="[]" fragment="main" class="nav-link">{{ langService.isTr() ? labels.mainPage.tr : labels.mainPage.en }}</a>
+            <a [routerLink]="[]" fragment="projects" class="nav-link">{{ langService.isTr() ? labels.projects.tr : labels.projects.en }}</a>
+            <a [routerLink]="[]" fragment="journey" class="nav-link">{{ langService.isTr() ? labels.journey.tr : labels.journey.en }}</a>
             <div class="nav-socials">
                 @for (social of socials; track social.name) {
                 <a [href]="social.url" target="_blank" class="nav-social-link" [title]="social.name">
@@ -25,20 +25,22 @@
                 </a>
                 }
             </div>
+            <button class="lang-toggle" (click)="langService.toggleLanguage()" [title]="langService.isTr() ? 'English' : 'Türkçe'">
+                {{ langService.isTr() ? 'EN' : 'TR' }}
+            </button>
         </div>
     </nav>
 
 
     <section class="hero-landing" id="main">
         <div class="hero-body" id="about">
-            <span class="hero-eyebrow">PORTFOLIO · DEVELOPER</span>
+            <span class="hero-eyebrow">{{ langService.isTr() ? labels.heroEyebrow.tr : labels.heroEyebrow.en }}</span>
             <h1 class="hero-name">
                 Emirhan<br>
                 <span class="name-accent">Atar</span>
             </h1>
             <p class="hero-tagline">
-                Full-Stack &amp; Game Developer — crafting scalable backend systems and immersive interactive
-                experiences.
+                {{ langService.isTr() ? labels.heroTagline.tr : labels.heroTagline.en }}
             </p>
             <div class="hero-chips">
                 <span>Go</span>
@@ -51,7 +53,7 @@
 
             </div>
             <a href="#projects" class="hero-cta">
-                Explore My Work
+                {{ langService.isTr() ? labels.exploreWork.tr : labels.exploreWork.en }}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12" />
@@ -72,7 +74,7 @@
         @for (project of projects; track project.id) {
         <section class="card" [class]="project.visualClass" appScrollReveal>
             <div class="card-content">
-                <h3>{{ project.title }}</h3>
+                <h3>{{ langService.isTr() ? project.titleTr : project.title }}</h3>
 
                 @if (project.mainImage) {
                 <div class="card-visual">
@@ -88,7 +90,7 @@
                 </div>
                 }
 
-                <p>{{ project.description }}</p>
+                <p>{{ langService.isTr() ? project.descriptionTr : project.description }}</p>
 
                 @if (project.links) {
                 <div class="project-links mt-4 flex flex-wrap gap-2">
@@ -135,7 +137,9 @@
         }
     </main>
 
-    <app-timeline [items]="developerTimeline" title="Engineering Journey" subtitle="CAREER TIMELINE"
-        theme="cyber"></app-timeline>
+    <app-timeline [items]="developerTimeline" 
+        [title]="langService.isTr() ? labels.timelineTitle.tr : labels.timelineTitle.en" 
+        [subtitle]="langService.isTr() ? labels.timelineSubtitle.tr : labels.timelineSubtitle.en"
+        theme="cyber" id="journey"></app-timeline>
     <app-footer theme="cyber"></app-footer>
 </div>

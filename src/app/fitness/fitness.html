@@ -15,10 +15,11 @@
             </a>
         </div>
         <div class="nav-links">
-            <a [routerLink]="[]" fragment="main" class="nav-link">Main Page</a>
-            <a [routerLink]="[]" fragment="about" class="nav-link">About Me</a>
-            <a [routerLink]="[]" fragment="diet-program" class="nav-link">Diet Program</a>
-            <a [routerLink]="[]" fragment="weekly-program" class="nav-link">Weekly Program</a>
+            <a [routerLink]="[]" fragment="main" class="nav-link">{{ langService.isTr() ? labels.mainPage.tr : labels.mainPage.en }}</a>
+            <a [routerLink]="[]" fragment="weekly-program" class="nav-link">{{ langService.isTr() ? labels.program.tr : labels.program.en }}</a>
+            <a [routerLink]="[]" fragment="diet-program" class="nav-link">{{ langService.isTr() ? labels.nutrition.tr : labels.nutrition.en }}</a>
+            <a [routerLink]="[]" fragment="hobbies" class="nav-link">{{ langService.isTr() ? labels.hobbies.tr : labels.hobbies.en }}</a>
+            <a [routerLink]="[]" fragment="journey" class="nav-link">{{ langService.isTr() ? labels.journey.tr : labels.journey.en }}</a>
             <div class="nav-socials">
                 @for (social of socials; track social.name) {
                 <a [href]="social.url" target="_blank" class="nav-social-link" [title]="social.name">
@@ -26,6 +27,9 @@
                 </a>
                 }
             </div>
+            <button class="lang-toggle" (click)="langService.toggleLanguage()" [title]="langService.isTr() ? 'English' : 'Türkçe'">
+                {{ langService.isTr() ? 'EN' : 'TR' }}
+            </button>
         </div>
     </nav>
 
@@ -33,15 +37,15 @@
     <section class="hero-landing" id="main" appScrollReveal>
 
         <div class="hero-body" id="about">
-            <span class="hero-eyebrow">LIFESTYLE</span>
+            <span class="hero-eyebrow">{{ langService.isTr() ? labels.heroEyebrow.tr : labels.heroEyebrow.en }}</span>
             <h1 class="hero-name">
                 Emirhan<br>
                 <span class="name-accent">Atar</span>
             </h1>
-            <p class="hero-slogan">Lift Heavy,<br>Eat Clean, Stay Dedicated.</p>
-            <p class="hero-desc">Transforming mind and body through rigorous daily persistence.</p>
+            <p class="hero-slogan" [innerHTML]="langService.isTr() ? labels.heroSlogan.tr : labels.heroSlogan.en"></p>
+            <p class="hero-desc">{{ langService.isTr() ? labels.heroDesc.tr : labels.heroDesc.en }}</p>
             <a href="#weekly-program" class="hero-cta">
-                View My Program
+                {{ langService.isTr() ? labels.viewProgram.tr : labels.viewProgram.en }}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12" />
@@ -65,14 +69,20 @@
     <!-- Remaining sections in the centered container -->
     <main class="content-container">
         <section class="split-section" id="weekly-program" appScrollReveal>
-            <h2 class="section-title">Weekly Program</h2>
+            <h2 class="section-title">{{ langService.isTr() ? labels.program.tr : labels.program.en }}</h2>
             <div class="split-grid">
                 @for (day of weeklyWorkout; track day.id) {
                 <div class="day-card">
-                    <h3>{{ day.dayName }}: {{ day.title }}</h3>
+                    <h3>{{ langService.isTr() ? day.dayNameTr : day.dayName }}: {{ langService.isTr() ? day.titleTr : day.title }}</h3>
                     <ul>
-                        @for (exercise of day.exercises; track exercise) {
-                        <li>{{ exercise }}</li>
+                        @if (langService.isTr() && day.exercisesTr) {
+                            @for (exercise of day.exercisesTr; track exercise) {
+                            <li>{{ exercise }}</li>
+                            }
+                        } @else {
+                            @for (exercise of day.exercises; track exercise) {
+                            <li>{{ exercise }}</li>
+                            }
                         }
                     </ul>
                 </div>
@@ -81,20 +91,21 @@
         </section>
 
         <section class="diet-section" id="diet-program" appScrollReveal>
-            <h2 class="section-title">Beslenme Planı (Diet Plan)</h2>
+            <h2 class="section-title">{{ langService.isTr() ? labels.nutrition.tr : labels.nutrition.en }}</h2>
             <div class="diet-grid">
                 @for (meal of dietPlan; track meal.id) {
                 <div class="meal-card" [class]="meal.cssClass || ''">
                     <div class="meal-header">
-                        <h3>{{ meal.name }}</h3>
-                        <span class="meal-time" [class.highlight]="meal.highlight">{{ meal.time }}</span>
+                        <h3>{{ langService.isTr() ? meal.nameTr : meal.name }}</h3>
+                        <span class="meal-time" [class.highlight]="meal.highlight">{{ langService.isTr() ? meal.timeTr : meal.time }}</span>
                     </div>
                     <ul class="meal-items">
                         @for (item of meal.items; track item.name) {
                         <li>
-                            <div class="item-name">{{ item.name }} &middot; <span>{{ item.amount }}</span></div>
-                            <div class="item-macros">{{ item.calories }} kcal | {{ item.protein }}g P | {{ item.carbs
-                                }}g C | {{ item.fats }}g Y</div>
+                            <div class="item-name">{{ langService.isTr() ? item.nameTr : item.name }} &middot; <span>{{ (langService.isTr() && item.amountTr) ? item.amountTr : item.amount }}</span></div>
+                            <div class="item-macros">
+                                {{ item.calories }} kcal | {{ item.protein }}g P | {{ item.carbs }}g C | {{ item.fats }}g Y
+                            </div>
                         </li>
                         }
                     </ul>
@@ -103,8 +114,42 @@
             </div>
         </section>
 
-        <app-timeline [items]="fitnessTimeline" title="Lifestyle Journey" subtitle="LIFESTYLE TIMELINE"
-            theme="fitness"></app-timeline>
+        <section class="hobbies-section" id="hobbies" appScrollReveal>
+            <h2 class="section-title">{{ langService.isTr() ? labels.beyondGym.tr : labels.beyondGym.en }}</h2>
+            <div class="hobbies-grid">
+                @for (hobby of hobbies; track hobby.id) {
+                <div class="hobby-card">
+                    <div class="hobby-icon-wrapper">
+                        @if (hobby.icon === 'music') {
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18V5l12-2v13"></path>
+                            <circle cx="6" cy="18" r="3"></circle>
+                            <circle cx="18" cy="16" r="3"></circle>
+                        </svg>
+                        } @else if (hobby.icon === 'utensils-crossed') {
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m16 2 2 2 4-4"></path>
+                            <path d="m2 18 5-5 3 3-5 5-3-3Z"></path>
+                            <path d="m10 10 5-5a1 1 0 0 1 1.4 0l3.9 3.9a1 1 0 0 1 0 1.4l-5 5"></path>
+                            <path d="m7 7 9 9"></path>
+                        </svg>
+                        }
+                    </div>
+                    <div class="hobby-info">
+                        <h3>{{ langService.isTr() ? hobby.nameTr : hobby.name }}</h3>
+                        <p>{{ langService.isTr() ? hobby.descriptionTr : hobby.description }}</p>
+                    </div>
+                </div>
+                }
+            </div>
+        </section>
+
+        <app-timeline [items]="fitnessTimeline" 
+            [title]="langService.isTr() ? labels.timelineTitle.tr : labels.timelineTitle.en" 
+            [subtitle]="langService.isTr() ? labels.timelineSubtitle.tr : labels.timelineSubtitle.en"
+            theme="fitness" id="journey"></app-timeline>
         <app-footer theme="fitness"></app-footer>
     </main>
 </div>

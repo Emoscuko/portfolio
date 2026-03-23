@@ -8,11 +8,16 @@ export interface TimelineItem {
     title: string;
     subtitle: string;
     description: string;
+    titleTr?: string;
+    subtitleTr?: string;
+    descriptionTr?: string;
     type: "education" | "work" | "certification";
     tags?: string[];
     iconSrc?: string;
     customIcon?: string;
 }
+
+import { LanguageService } from '../services/language';
 
 @Component({
     selector: 'app-timeline',
@@ -26,6 +31,8 @@ export class TimelineComponent {
     @Input() subtitle: string = "TIMELINE";
     @Input() items: TimelineItem[] = [];
     @Input() theme: "cyber" | "fitness" = "cyber";
+
+    constructor(public langService: LanguageService) {}
 
     getTypeConfig(type: string) {
         if (this.theme === 'cyber') {

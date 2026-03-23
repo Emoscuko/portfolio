@@ -3,7 +3,8 @@ import { RouterLink } from '@angular/router';
 import { TimelineComponent } from '../timeline/timeline';
 import { ScrollRevealDirective } from '../directives/scroll-reveal.directive';
 import { FooterComponent } from '../footer/footer';
-import { DEVELOPER_SOCIALS, DEVELOPER_PROJECTS, DEVELOPER_TIMELINE } from '../data/developer.data';
+import { DEVELOPER_SOCIALS, DEVELOPER_PROJECTS, DEVELOPER_TIMELINE, DEVELOPER_LABELS } from '../data/developer.data';
+import { LanguageService } from '../services/language';
 
 @Component({
   selector: 'app-developer',
@@ -15,4 +16,7 @@ export class Developer {
   socials = DEVELOPER_SOCIALS;
   projects = DEVELOPER_PROJECTS;
   developerTimeline = DEVELOPER_TIMELINE;
+  labels = DEVELOPER_LABELS;
+
+  constructor(public langService: LanguageService) {}
 }
