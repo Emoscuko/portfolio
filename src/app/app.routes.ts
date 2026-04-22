@@ -5,19 +5,19 @@ import { Fitness } from './fitness/fitness';
 import type { SeoRouteData } from './services/seo';
 
 const homeSeo: SeoRouteData = {
-    title: 'Emirhan Atar | Full-Stack & Game Developer',
-    description: 'Official portfolio of Emirhan Atar, a full-stack and game developer building Angular, ASP.NET, Azure backend systems, Unity games, and fitness lifestyle content.',
+    title: 'Emirhan Atar | Full-Stack Developer',
+    description: 'Official portfolio of Emirhan Atar, a Java-focused full-stack developer working with OOP, Design Patterns, Go, Angular, Azure, CI/CD, prompt engineering, MCP, RAG, SEO, indexing, and Unity.',
     path: '/',
-    keywords: 'Emirhan Atar, emirhanatar, full-stack developer, game developer, Angular developer, ASP.NET developer, Unity developer, Azure backend developer, portfolio',
+    keywords: 'Emirhan Atar, emirhanatar, full-stack developer, Java developer, Object-Oriented Programming, OOP, Design Patterns, Go developer, Angular developer, Azure developer, CI/CD, Infrastructure as Code, Bicep, prompt engineering, LLM, MCP, RAG, SEO, indexing, Unity, portfolio',
     image: '/EAIcon.png',
     imageAlt: 'Emirhan Atar portfolio logo'
 };
 
 const developerSeo: SeoRouteData = {
-    title: 'Emirhan Atar | Full-Stack Developer, Game Developer',
-    description: 'Developer portfolio of Emirhan Atar featuring Angular, ASP.NET, Azure, backend systems, Unity game projects, internships, education, and software engineering work.',
+    title: 'Emirhan Atar | Full-Stack Developer, Java & Prompt Engineering',
+    description: 'Developer portfolio of Emirhan Atar featuring Java, OOP, Design Patterns, Go, Angular, Azure DevOps, Bicep, Key Vault, CI/CD, LLMs, prompt engineering, MCP, RAG, SEO, indexing, and Unity.',
     path: '/dev',
-    keywords: 'Emirhan Atar developer, full-stack developer portfolio, Angular, ASP.NET, Azure, backend developer, Unity game developer, software engineer',
+    keywords: 'Emirhan Atar developer, full-stack developer portfolio, Java, Object-Oriented Programming, OOP, Design Patterns, Go, Angular, Flutter, Azure DevOps, Bicep, Key Vault, CI/CD, Infrastructure as Code, LLM, prompt engineering, hooks, plugins, MCP, RAG, SEO, indexing, Unity, software engineer',
     image: '/EAIcon.png',
     imageAlt: 'Emirhan Atar developer portfolio'
 };

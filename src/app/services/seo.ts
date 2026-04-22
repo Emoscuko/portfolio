@@ -18,10 +18,10 @@ export interface SeoRouteData {
 }
 
 const DEFAULT_SEO: SeoRouteData = {
-  title: 'Emirhan Atar | Full-Stack & Game Developer',
-  description: 'Portfolio of Emirhan Atar, a full-stack and game developer building Angular, ASP.NET, Azure backend systems, Unity games, and fitness lifestyle content.',
+  title: 'Emirhan Atar | Full-Stack Developer',
+  description: 'Portfolio of Emirhan Atar, a Java-focused full-stack developer working with OOP, Design Patterns, Go, Angular, Azure, CI/CD, prompt engineering, MCP, RAG, SEO, indexing, and Unity.',
   path: '/',
-  keywords: 'Emirhan Atar, full-stack developer, game developer, Angular developer, ASP.NET developer, Unity developer, Azure backend developer, portfolio',
+  keywords: 'Emirhan Atar, full-stack developer, Java developer, Object-Oriented Programming, OOP, Design Patterns, Go developer, Angular developer, Azure developer, CI/CD, Infrastructure as Code, Bicep, prompt engineering, LLM, MCP, RAG, SEO, indexing, Unity developer, portfolio',
   image: DEFAULT_IMAGE,
   imageAlt: 'Emirhan Atar portfolio logo'
 };
@@ -146,8 +146,8 @@ export class SeoService {
           name: SITE_NAME,
           url: `${SITE_URL}/`,
           image: `${SITE_URL}/EAIcon.png`,
-          jobTitle: ['Full-Stack Developer', 'Game Developer'],
-          knowsAbout: ['Angular', 'ASP.NET', 'Azure', 'Backend Development', 'Unity Game Development', 'Fitness', 'Nutrition'],
+          jobTitle: ['Full-Stack Developer', 'Java Developer', 'Prompt Engineer'],
+          knowsAbout: ['Java', 'Object-Oriented Programming', 'OOP', 'Design Patterns', 'Go', 'Angular', 'Flutter', 'Azure', 'Azure DevOps', 'Infrastructure as Code', 'Bicep', 'Key Vault', 'Prompt Engineering', 'AI-assisted workflows', 'LLM Deployment', 'Hooks', 'Plugins', 'MCP', 'RAG', 'CI/CD', 'SEO', 'Indexing', 'Unity', 'Mobile Game Development', 'Fitness', 'Nutrition'],
           sameAs: [
             'https://github.com/Emoscuko',
             'https://www.linkedin.com/in/emirhan-atar-26a374309/',

@@ -16,6 +16,7 @@
         </div>
         <div class="nav-links">
             <a [routerLink]="[]" fragment="main" class="nav-link">{{ langService.isTr() ? labels.mainPage.tr : labels.mainPage.en }}</a>
+            <a [routerLink]="[]" fragment="skills" class="nav-link">{{ langService.isTr() ? labels.skills.tr : labels.skills.en }}</a>
             <a [routerLink]="[]" fragment="projects" class="nav-link">{{ langService.isTr() ? labels.projects.tr : labels.projects.en }}</a>
             <a [routerLink]="[]" fragment="journey" class="nav-link">{{ langService.isTr() ? labels.journey.tr : labels.journey.en }}</a>
             <div class="nav-socials">
@@ -43,17 +44,12 @@
                 {{ langService.isTr() ? labels.heroTagline.tr : labels.heroTagline.en }}
             </p>
             <div class="hero-chips">
-                <span>Go</span>
-                <span>Angular</span>
-                <span>Azure</span>
-                <span>Unity</span>
-                <span>C#</span>
-                <span>Java</span>
-                <span>AWS</span>
-
+                @for (skill of heroSkills; track skill) {
+                <span>{{ skill }}</span>
+                }
             </div>
-            <a href="#projects" class="hero-cta">
-                {{ langService.isTr() ? labels.exploreWork.tr : labels.exploreWork.en }}
+            <a href="#skills" class="hero-cta">
+                {{ langService.isTr() ? labels.exploreSkills.tr : labels.exploreSkills.en }}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12" />
@@ -69,72 +65,132 @@
         </div>
     </section>
 
+    <section class="skills-section" id="skills">
+        <header class="skills-header" appScrollReveal>
+            <span>{{ langService.isTr() ? labels.skillsEyebrow.tr : labels.skillsEyebrow.en }}</span>
+            <h2>{{ langService.isTr() ? labels.skillsTitle.tr : labels.skillsTitle.en }}</h2>
+            <p>{{ langService.isTr() ? labels.skillsSubtitle.tr : labels.skillsSubtitle.en }}</p>
+        </header>
 
-    <main class="content-grid" id="projects">
-        @for (project of projects; track project.id) {
-        <section class="card" [class]="project.visualClass" appScrollReveal>
-            <div class="card-content">
-                <h3>{{ langService.isTr() ? project.titleTr : project.title }}</h3>
-
-                @if (project.mainImage) {
-                <div class="card-visual">
-                    <img [src]="project.mainImage" [alt]="project.title" class="project-img" />
+        <div class="skills-grid">
+            @for (skill of skills; track skill.id) {
+            <article class="skill-card" [class.skill-card--featured]="skill.featured"
+                [class.java-skill]="skill.visualClass === 'java-skill'"
+                [class.fullstack-skill]="skill.visualClass === 'fullstack-skill'"
+                [class.cloud-skill]="skill.visualClass === 'cloud-skill'"
+                [class.ai-skill]="skill.visualClass === 'ai-skill'"
+                [class.unity-skill]="skill.visualClass === 'unity-skill'" appScrollReveal>
+                <div class="skill-card__header">
+                    <span class="skill-index">0{{ $index + 1 }}</span>
+                    <h3>{{ skill.title }}</h3>
                 </div>
-                } @else if (project.visualClass === 'unity-card') {
-                <div class="card-visual">
-                    <div class="wireframe-cube"></div>
-                </div>
-                } @else if (project.visualClass === 'fullstack-card') {
-                <div class="card-visual">
-                    <div class="network-nodes"></div>
-                </div>
-                }
 
-                <p>{{ langService.isTr() ? project.descriptionTr : project.description }}</p>
+                <p class="skill-summary">{{ skill.summary }}</p>
 
-                @if (project.links) {
-                <div class="project-links mt-4 flex flex-wrap gap-2">
-                    @for (link of project.links; track link.name) {
-                    <a [href]="link.url" target="_blank"
-                        class="social-link game-link inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm transition-all"
-                        [class]="link.cssClass || ''">
+                <div class="skill-evidence">
+                    <span class="section-label">{{ langService.isTr() ? labels.evidenceLabel.tr : labels.evidenceLabel.en }}</span>
+                    <ul>
+                        @for (item of skill.evidence; track item) {
+                        <li>{{ item }}</li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="skill-keywords">
+                    <span class="section-label">{{ langService.isTr() ? labels.keywordsLabel.tr : labels.keywordsLabel.en }}</span>
+                    <div>
+                        @for (keyword of skill.keywords; track keyword) {
+                        <span>{{ keyword }}</span>
+                        }
+                    </div>
+                </div>
+            </article>
+            }
+        </div>
+    </section>
+
+    <main class="projects-section" id="projects">
+        <header class="projects-header" appScrollReveal>
+            <span>{{ langService.isTr() ? labels.projectsEyebrow.tr : labels.projectsEyebrow.en }}</span>
+            <h2>{{ langService.isTr() ? labels.projectsTitle.tr : labels.projectsTitle.en }}</h2>
+            <p>{{ langService.isTr() ? labels.projectsSubtitle.tr : labels.projectsSubtitle.en }}</p>
+        </header>
+
+        <div class="case-study-grid">
+            @for (project of projects; track project.id) {
+            <section class="case-card" [class.case-card--featured]="project.featured"
+                [class.saferoads-card]="project.visualClass === 'saferoads-card'"
+                [class.commerce-card]="project.visualClass === 'commerce-card'"
+                [class.seo-card]="project.visualClass === 'seo-card'"
+                [class.unity-card]="project.visualClass === 'unity-card'" appScrollReveal>
+                <div class="case-card__topline">
+                    <span class="project-status">{{ langService.isTr() ? project.statusTr : project.status }}</span>
+                    <span class="project-role">{{ langService.isTr() ? project.roleTr : project.role }}</span>
+                </div>
+
+                <div class="case-card__body">
+                    <div class="case-card__copy">
+                        <h3>{{ langService.isTr() ? project.titleTr : project.title }}</h3>
+                        <p class="project-description">{{ langService.isTr() ? project.descriptionTr : project.description }}</p>
+                        <p class="project-impact">{{ langService.isTr() ? project.impactTr : project.impact }}</p>
+                    </div>
+
+                    <div class="case-card__visual" aria-hidden="true">
+                        @if (project.mainImage) {
+                        <img [src]="project.mainImage" [alt]="project.title" class="project-img" />
+                        } @else {
+                        <div class="system-map">
+                            @for (node of project.architecture.slice(0, 4); track node) {
+                            <span>{{ node }}</span>
+                            }
+                        </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="architecture-strip">
+                    <span class="section-label">{{ langService.isTr() ? labels.architectureLabel.tr : labels.architectureLabel.en }}</span>
+                    <div class="architecture-nodes">
+                        @for (node of project.architecture; track node) {
+                        <span>{{ node }}</span>
+                        }
+                    </div>
+                </div>
+
+                <div class="project-detail-grid">
+                    <div>
+                        <span class="section-label">{{ langService.isTr() ? labels.highlightsLabel.tr : labels.highlightsLabel.en }}</span>
+                        <ul class="project-highlights">
+                            @for (highlight of (langService.isTr() ? project.highlightsTr : project.highlights); track highlight) {
+                            <li>{{ highlight }}</li>
+                            }
+                        </ul>
+                    </div>
+
+                    <div>
+                        <span class="section-label">{{ langService.isTr() ? labels.stackLabel.tr : labels.stackLabel.en }}</span>
+                        <div class="tech-stack">
+                            @for (tech of project.techStack; track tech) {
+                            <span>{{ tech }}</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @if (project.primaryLinks) {
+                <div class="project-links">
+                    @for (link of project.primaryLinks; track link.name) {
+                    <a [href]="link.url" target="_blank" rel="noopener" class="project-link"
+                        [class.game-link]="link.cssClass === 'game-link'">
                         <img [src]="link.iconSrc" width="16" height="16" [alt]="link.name">
                         {{ link.name }}
                     </a>
                     }
                 </div>
                 }
-
-                @if (!project.hasCustomTable) {
-                <div class="tech-stack">
-                    @for (tech of project.techStack; track tech) {
-                    <span>{{ tech }}</span>
-                    }
-                </div>
-                }
-
-                @if (project.hasCustomTable) {
-                <div class="db-tables">
-                    <div class="table">
-                        <div class="t-header">users</div>
-                        <div class="t-row">id (PK)</div>
-                        <div class="t-row">email_idx</div>
-                        <div class="t-row">created_at</div>
-                    </div>
-                    <svg class="relation-arrow" width="40" height="20">
-                        <path stroke="#00E5FF" stroke-width="2" fill="none" d="M0,10 L30,10 L25,5 M30,10 L25,15" />
-                    </svg>
-                    <div class="table">
-                        <div class="t-header">audit_logs</div>
-                        <div class="t-row">user_id (FK)</div>
-                        <div class="t-row">action_type</div>
-                        <div class="t-row">timestamp</div>
-                    </div>
-                </div>
-                }
-            </div>
-        </section>
-        }
+            </section>
+            }
+        </div>
     </main>
 
     <app-timeline [items]="developerTimeline" 
