@@ -13,6 +13,11 @@ export class ScrollRevealDirective implements OnInit, OnDestroy {
         // Add the initial hidden class immediately
         this.renderer.addClass(this.el.nativeElement, 'scroll-reveal-hidden');
 
+        if (typeof IntersectionObserver === 'undefined') {
+            this.renderer.addClass(this.el.nativeElement, 'scroll-reveal-visible');
+            return;
+        }
+
         // Set up IntersectionObserver to detect when element is in viewport
         this.observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

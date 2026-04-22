@@ -68,38 +68,141 @@
 
     <!-- Remaining sections in the centered container -->
     <main class="content-container">
-        <section class="split-section" id="weekly-program" appScrollReveal>
-            <h2 class="section-title">{{ langService.isTr() ? labels.program.tr : labels.program.en }}</h2>
-            <div class="split-grid">
-                @for (day of weeklyWorkout; track day.id) {
-                <div class="day-card">
-                    <h3>{{ langService.isTr() ? day.dayNameTr : day.dayName }}: {{ langService.isTr() ? day.titleTr : day.title }}</h3>
-                    <ul>
-                        @if (langService.isTr() && day.exercisesTr) {
-                            @for (exercise of day.exercisesTr; track exercise) {
-                            <li>{{ exercise }}</li>
-                            }
-                        } @else {
-                            @for (exercise of day.exercises; track exercise) {
-                            <li>{{ exercise }}</li>
-                            }
-                        }
-                    </ul>
+        <section class="program-section" id="weekly-program" appScrollReveal>
+            <div class="section-heading">
+                <span class="section-kicker">{{ langService.isTr() ? labels.weeklySystem.tr : labels.weeklySystem.en }}</span>
+                <h2 class="section-title">{{ langService.isTr() ? labels.program.tr : labels.program.en }}</h2>
+                <p>{{ langService.isTr() ? labels.weeklyCopy.tr : labels.weeklyCopy.en }}</p>
+            </div>
+
+            <div class="program-board">
+                <div class="program-stats" aria-label="Weekly training summary">
+                    <div class="program-stat">
+                        <span>{{ trainingDayCount }}</span>
+                        <small>{{ langService.isTr() ? labels.trainingDays.tr : labels.trainingDays.en }}</small>
+                    </div>
+                    <div class="program-stat">
+                        <span>{{ totalWorkoutMovements }}</span>
+                        <small>{{ langService.isTr() ? labels.totalMoves.tr : labels.totalMoves.en }}</small>
+                    </div>
+                    <div class="program-stat">
+                        <span>{{ weeklySetBlocks }}</span>
+                        <small>{{ langService.isTr() ? labels.weeklySets.tr : labels.weeklySets.en }}</small>
+                    </div>
                 </div>
-                }
+
+                <div class="week-switcher" role="tablist" aria-label="Weekly workout days">
+                    @for (day of weeklyWorkout; track day.id) {
+                    <button
+                        type="button"
+                        class="week-tab"
+                        [class.is-active]="selectedWorkoutId === day.id"
+                        [attr.aria-selected]="selectedWorkoutId === day.id"
+                        (click)="selectWorkout(day.id)">
+                        <span class="week-tab-day">{{ shortDayName(day) }}</span>
+                        <span class="week-tab-title">{{ langService.isTr() ? day.titleTr : day.title }}</span>
+                    </button>
+                    }
+                </div>
+
+                <div class="workout-stage">
+                    <div class="workout-stage-copy">
+                        <span class="panel-kicker">{{ workoutFocus(selectedWorkout) }}</span>
+                        <h3>{{ langService.isTr() ? selectedWorkout.dayNameTr : selectedWorkout.dayName }} &middot; {{ langService.isTr() ? selectedWorkout.titleTr : selectedWorkout.title }}</h3>
+                        <div class="workout-meta-row">
+                            <span>{{ localizedExercises(selectedWorkout).length }} {{ langService.isTr() ? labels.movements.tr : labels.movements.en }}</span>
+                            <span>{{ langService.isTr() ? labels.intensity.tr : labels.intensity.en }}: {{ workoutIntensity(selectedWorkout) }}</span>
+                            <span>{{ langService.isTr() ? labels.focus.tr : labels.focus.en }}: {{ workoutFocus(selectedWorkout) }}</span>
+                        </div>
+                    </div>
+
+                    <ol class="movement-list">
+                        @for (exercise of localizedExercises(selectedWorkout); track exercise; let index = $index) {
+                        <li>
+                            <span class="movement-index">{{ index + 1 }}</span>
+                            <span>{{ exercise }}</span>
+                        </li>
+                        }
+                    </ol>
+                </div>
             </div>
         </section>
 
         <section class="diet-section" id="diet-program" appScrollReveal>
-            <h2 class="section-title">{{ langService.isTr() ? labels.nutrition.tr : labels.nutrition.en }}</h2>
-            <div class="diet-grid">
-                @for (meal of dietPlan; track meal.id) {
-                <div class="meal-card" [class]="meal.cssClass || ''">
-                    <div class="meal-header">
-                        <h3>{{ langService.isTr() ? meal.nameTr : meal.name }}</h3>
-                        <span class="meal-time" [class.highlight]="meal.highlight">{{ langService.isTr() ? meal.timeTr : meal.time }}</span>
+            <div class="section-heading">
+                <span class="section-kicker">{{ langService.isTr() ? labels.nutritionSystem.tr : labels.nutritionSystem.en }}</span>
+                <h2 class="section-title">{{ langService.isTr() ? labels.nutrition.tr : labels.nutrition.en }}</h2>
+                <p>{{ langService.isTr() ? labels.nutritionCopy.tr : labels.nutritionCopy.en }}</p>
+            </div>
+
+            <div class="nutrition-board">
+                <div class="nutrition-summary">
+                    <div class="daily-intake">
+                        <small>{{ langService.isTr() ? labels.dailyIntake.tr : labels.dailyIntake.en }}</small>
+                        <strong>{{ nutritionTotals.calories }}</strong>
+                        <span>kcal</span>
                     </div>
-                    <ul class="meal-items">
+
+                    <div class="macro-stack" aria-label="Daily macro split">
+                        <div class="macro-row protein">
+                            <div class="macro-row-label">
+                                <span>{{ langService.isTr() ? labels.protein.tr : labels.protein.en }}</span>
+                                <strong>{{ formatMetric(nutritionTotals.protein) }}g</strong>
+                            </div>
+                            <div class="macro-track">
+                                <span [style.width.%]="macroCaloriePercent('protein')"></span>
+                            </div>
+                        </div>
+                        <div class="macro-row carbs">
+                            <div class="macro-row-label">
+                                <span>{{ langService.isTr() ? labels.carbs.tr : labels.carbs.en }}</span>
+                                <strong>{{ formatMetric(nutritionTotals.carbs) }}g</strong>
+                            </div>
+                            <div class="macro-track">
+                                <span [style.width.%]="macroCaloriePercent('carbs')"></span>
+                            </div>
+                        </div>
+                        <div class="macro-row fats">
+                            <div class="macro-row-label">
+                                <span>{{ langService.isTr() ? labels.fats.tr : labels.fats.en }}</span>
+                                <strong>{{ formatMetric(nutritionTotals.fats) }}g</strong>
+                            </div>
+                            <div class="macro-track">
+                                <span [style.width.%]="macroCaloriePercent('fats')"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meal-timeline">
+                @for (meal of dietPlan; track meal.id) {
+                <article class="meal-row" [class.post-workout-card]="meal.cssClass === 'post-workout-card'" [class.night-card]="meal.cssClass === 'night-card'">
+                    <div class="meal-marker">
+                        <span></span>
+                    </div>
+
+                    <div class="meal-content">
+                        <div class="meal-header">
+                            <div>
+                                <span class="meal-time" [class.highlight]="meal.highlight">{{ langService.isTr() ? meal.timeTr : meal.time }}</span>
+                                <h3>{{ langService.isTr() ? meal.nameTr : meal.name }}</h3>
+                            </div>
+                            <strong>{{ mealTotal(meal, 'calories') }} kcal</strong>
+                        </div>
+
+                        <div class="meal-macros">
+                            <span class="protein">{{ formatMetric(mealTotal(meal, 'protein')) }}g P</span>
+                            <span class="carbs">{{ formatMetric(mealTotal(meal, 'carbs')) }}g C</span>
+                            <span class="fats">{{ formatMetric(mealTotal(meal, 'fats')) }}g Y</span>
+                        </div>
+
+                        <div class="meal-progress">
+                            <span class="protein" [style.flex-grow]="mealMacroCalories(meal, 'protein')"></span>
+                            <span class="carbs" [style.flex-grow]="mealMacroCalories(meal, 'carbs')"></span>
+                            <span class="fats" [style.flex-grow]="mealMacroCalories(meal, 'fats')"></span>
+                        </div>
+
+                        <ul class="meal-items" [attr.aria-label]="langService.isTr() ? labels.ingredients.tr : labels.ingredients.en">
                         @for (item of meal.items; track item.name) {
                         <li>
                             <div class="item-name">{{ langService.isTr() ? item.nameTr : item.name }} &middot; <span>{{ (langService.isTr() && item.amountTr) ? item.amountTr : item.amount }}</span></div>
@@ -108,9 +211,11 @@
                             </div>
                         </li>
                         }
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
+                </article>
                 }
+                </div>
             </div>
         </section>
 

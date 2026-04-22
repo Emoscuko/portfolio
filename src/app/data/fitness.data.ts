@@ -67,18 +67,6 @@ export const FITNESS_SOCIALS: SocialLink[] = [
         url: "https://www.youtube.com/@emirhannatar",
         iconSrc: "https://cdn.simpleicons.org/youtube/FF0000",
         cssClass: ""
-    },
-    {
-        name: "Cooking Insta (@emirhancooks)",
-        url: "https://www.instagram.com/emirhancooks/",
-        iconSrc: "https://cdn.simpleicons.org/instagram/E4405F",
-        cssClass: "cook-link"
-    },
-    {
-        name: "Cooking TikTok",
-        url: "https://www.tiktok.com/@emirhancooks",
-        iconSrc: "https://cdn.simpleicons.org/tiktok/E0E0E0",
-        cssClass: "cook-link"
     }
 ];
 
@@ -116,8 +104,8 @@ export const WEEKLY_WORKOUT: WorkoutDay[] = [
         dayNameTr: "Perşembe",
         title: "Balance Muscles",
         titleTr: "Denge Kasları",
-        exercises: ["Stretching moves", "Infraspinatus workout"],
-        exercisesTr: ["Esnetme hareketleri", "Infraspinatus antrenmanı"]
+        exercises: ["Stretching moves", "Rotator Cuffs", "Hip Mobility"],
+        exercisesTr: ["Esnetme hareketleri", "Rotator Cuffs", "Hip Mobility"]
     },
     {
         id: "friday",
@@ -174,9 +162,9 @@ export const DIET_PLAN: MealPlan[] = [
         highlight: true,
         cssClass: "post-workout-card",
         items: [
-            { name: "Buckwheat (Raw)", nameTr: "Karabuğday (Çiğ)", amount: "150g", calories: 515, protein: 19.5, carbs: 107, fats: 4.5 },
+            { name: "Buckwheat (Raw)", nameTr: "Karabuğday (Çiğ)", amount: "50g", calories: 172, protein: 6.5, carbs: 36, fats: 1.5 },
             { name: "Chicken Breast (Raw)", nameTr: "Tavuk Göğsü (Çiğ)", amount: "100g", calories: 110, protein: 23, carbs: 0, fats: 2 },
-            { name: "Olive Oil", nameTr: "Zeytinyağı", amount: "20g", calories: 177, protein: 0, carbs: 0, fats: 20 },
+            { name: "Olive Oil", nameTr: "Zeytinyağı", amount: "10g", calories: 88, protein: 0, carbs: 0, fats: 10 },
             { name: "Green/Capya Pepper", nameTr: "Yeşil/Kapya Biber", amount: "1/2 piece", amountTr: "1/2 adet", calories: 20, protein: 1, carbs: 4, fats: 0 },
             { name: "Soy Sauce", nameTr: "Soya Sosu", amount: "1 tbsp", amountTr: "1 y.k.", calories: 5, protein: 0, carbs: 1, fats: 0 }
         ]
@@ -307,6 +295,23 @@ export const FITNESS_LABELS = {
     heroSlogan: { en: 'Lift Heavy,<br>Eat Clean, Stay Dedicated.', tr: 'Ağır Kaldır,<br>Temiz Beslen, Sadık Kal.' },
     heroDesc: { en: 'Transforming mind and body through rigorous daily persistence.', tr: 'Sıkı ve günlük kararlılıkla zihin ve vücudu dönüştürmek.' },
     viewProgram: { en: 'View My Program', tr: 'Programımı Gör' },
+    weeklySystem: { en: 'Weekly System', tr: 'Haftalık Sistem' },
+    weeklyCopy: { en: 'Structured split with strength, volume, stabilizer work and full recovery.', tr: 'Güç, hacim, denge kasları ve tam toparlanma içeren düzenli split.' },
+    trainingDays: { en: 'Training Days', tr: 'Antrenman Günü' },
+    totalMoves: { en: 'Total Moves', tr: 'Toplam Hareket' },
+    weeklySets: { en: 'Weekly Sets', tr: 'Haftalık Set' },
+    focus: { en: 'Focus', tr: 'Odak' },
+    intensity: { en: 'Intensity', tr: 'Yoğunluk' },
+    movements: { en: 'Movements', tr: 'Hareket' },
+    nutritionSystem: { en: 'Nutrition System', tr: 'Beslenme Sistemi' },
+    nutritionCopy: { en: 'Daily intake organized by recovery timing, macros and ingredient clarity.', tr: 'Günlük alım; toparlanma zamanı, makrolar ve içerik netliğiyle düzenlendi.' },
+    dailyIntake: { en: 'Daily Intake', tr: 'Günlük Alım' },
+    macroSplit: { en: 'Macro Split', tr: 'Makro Dağılım' },
+    calories: { en: 'Calories', tr: 'Kalori' },
+    protein: { en: 'Protein', tr: 'Protein' },
+    carbs: { en: 'Carbs', tr: 'Karbonhidrat' },
+    fats: { en: 'Fats', tr: 'Yağ' },
+    ingredients: { en: 'Ingredients', tr: 'İçerik' },
     beyondGym: { en: 'Beyond the Gym', tr: 'Spor Salonunun Ötesinde' },
     timelineTitle: { en: 'Lifestyle Journey', tr: 'Yaşam Yolculuğu' },
     timelineSubtitle: { en: 'LIFESTYLE TIMELINE', tr: 'LIFESTYLE ZAMAN ÇİZELGESİ' }

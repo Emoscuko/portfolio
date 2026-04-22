@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { trigger, transition, style, query, animate, group } from '@angular/animations';
 import { CursorComponent } from './cursor/cursor';
 import { ScrollProgressComponent } from './scroll-progress/scroll-progress';
+import { SeoService } from './services/seo';
 
 export const slideInAnimation = trigger('routeAnimations', [
   transition('* <=> *', [
@@ -38,6 +39,10 @@ export const slideInAnimation = trigger('routeAnimations', [
 })
 export class App {
   protected readonly title = signal('dual-portfolio');
+
+  constructor(private readonly seoService: SeoService) {
+    this.seoService.init();
+  }
 
   getDepth(outlet: RouterOutlet) {
     return outlet.activatedRouteData && outlet.activatedRouteData['animation'];

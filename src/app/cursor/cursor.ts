@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, OnInit, OnDestroy, signal, ViewChild, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, ElementRef, HostListener, OnInit, OnDestroy, PLATFORM_ID, signal, ViewChild, inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
 
@@ -10,6 +11,8 @@ import { filter } from 'rxjs';
 })
 export class CursorComponent implements OnInit, OnDestroy {
     private router = inject(Router);
+    private platformId = inject(PLATFORM_ID);
+    private isBrowser = isPlatformBrowser(this.platformId);
 
     @ViewChild('dot', { static: true }) dot!: ElementRef<HTMLDivElement>;
 
@@ -51,11 +54,15 @@ export class CursorComponent implements OnInit, OnDestroy {
             }
         }, 0);
 
-        this.animate();
+        if (this.isBrowser) {
+            this.animate();
+        }
     }
 
     ngOnDestroy() {
-        cancelAnimationFrame(this.animationFrameId);
+        if (this.isBrowser) {
+            cancelAnimationFrame(this.animationFrameId);
+        }
     }
 
     @HostListener('document:mousemove', ['$event'])
@@ -87,6 +94,10 @@ export class CursorComponent implements OnInit, OnDestroy {
     }
 
     private animate = () => {
+        if (!this.isBrowser) {
+            return;
+        }
+
         // Direct but slightly smoothed movement for dot to avoid jitter
         this.dotX += (this.mouseX - this.dotX) * 0.5;
         this.dotY += (this.mouseY - this.dotY) * 0.5;

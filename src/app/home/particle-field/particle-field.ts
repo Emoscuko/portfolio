@@ -1,5 +1,5 @@
-import { Component, ElementRef, Input, OnInit, OnDestroy, ViewChild, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ElementRef, Input, OnInit, OnDestroy, PLATFORM_ID, ViewChild, HostListener, inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 interface Particle {
     x: number;
@@ -22,7 +22,9 @@ export class ParticleFieldComponent implements OnInit, OnDestroy {
     @Input() theme: 'flux' | 'embers' = 'flux';
     @ViewChild('particleCanvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
 
-    private ctx!: CanvasRenderingContext2D;
+    private platformId = inject(PLATFORM_ID);
+    private isBrowser = isPlatformBrowser(this.platformId);
+    private ctx?: CanvasRenderingContext2D;
     private particles: Particle[] = [];
     private animationId: number = 0;
     private mouseX: number = -1000;
@@ -31,14 +33,23 @@ export class ParticleFieldComponent implements OnInit, OnDestroy {
     constructor() { }
 
     ngOnInit(): void {
-        this.ctx = this.canvasRef.nativeElement.getContext('2d')!;
+        if (!this.isBrowser) {
+            return;
+        }
+
+        const context = this.canvasRef.nativeElement.getContext('2d');
+        if (!context) {
+            return;
+        }
+
+        this.ctx = context;
         this.resize();
         this.initParticles();
         this.animate();
     }
 
     ngOnDestroy(): void {
-        if (this.animationId) {
+        if (this.isBrowser && this.animationId) {
             cancelAnimationFrame(this.animationId);
         }
     }
@@ -90,7 +101,12 @@ export class ParticleFieldComponent implements OnInit, OnDestroy {
     }
 
     private animate(): void {
-        this.ctx.clearRect(0, 0, this.canvasRef.nativeElement.width, this.canvasRef.nativeElement.height);
+        if (!this.isBrowser || !this.ctx) {
+            return;
+        }
+
+        const ctx = this.ctx;
+        ctx.clearRect(0, 0, this.canvasRef.nativeElement.width, this.canvasRef.nativeElement.height);
         
         this.particles.forEach((p, i) => {
             // Update position
@@ -122,11 +138,11 @@ export class ParticleFieldComponent implements OnInit, OnDestroy {
             }
 
             // Draw particle
-            this.ctx.beginPath();
-            this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            this.ctx.fillStyle = p.color;
-            this.ctx.globalAlpha = p.opacity;
-            this.ctx.fill();
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = p.opacity;
+            ctx.fill();
 
             // Draw connections (flux theme only)
             if (this.theme === 'flux') {
@@ -137,12 +153,12 @@ export class ParticleFieldComponent implements OnInit, OnDestroy {
                     const dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
 
                     if (dist2 < 120) {
-                        this.ctx.beginPath();
-                        this.ctx.moveTo(p.x, p.y);
-                        this.ctx.lineTo(p2.x, p2.y);
-                        this.ctx.strokeStyle = p.color;
-                        this.ctx.globalAlpha = (120 - dist2) / 120 * 0.15;
-                        this.ctx.stroke();
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = p.color;
+                        ctx.globalAlpha = (120 - dist2) / 120 * 0.15;
+                        ctx.stroke();
                     }
                 }
             }
