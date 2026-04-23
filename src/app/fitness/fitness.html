@@ -35,6 +35,9 @@
 
     <!-- Full-Screen Hero — outside content-container for full width -->
     <section class="hero-landing" id="main" appScrollReveal>
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+            <source src="/videos/lifestyle-placeholder.mp4" type="video/mp4">
+        </video>
 
         <div class="hero-body" id="about">
             <span class="hero-eyebrow">{{ langService.isTr() ? labels.heroEyebrow.tr : labels.heroEyebrow.en }}</span>
