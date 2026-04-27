@@ -5,11 +5,19 @@ const app = express();
 // Change 'portfolio' to match the folder name inside your 'dist' folder
 const distPath = path.join(__dirname, 'dist/portfolio/browser');
 
-app.get(['/dev/', '/fitness/'], (req, res) => {
-    res.redirect(301, req.path.slice(0, -1));
+const prerenderedRoutes = new Set(['/dev', '/fitness']);
+
+app.get(['/dev/', '/fitness/'], (req, res, next) => {
+    if (req.path.endsWith('/')) {
+        const queryString = req.originalUrl.slice(req.path.length);
+        res.redirect(301, `${req.path.slice(0, -1)}${queryString}`);
+        return;
+    }
+
+    next();
 });
 
-app.get(['/dev', '/fitness'], (req, res) => {
+app.get([...prerenderedRoutes], (req, res) => {
     res.sendFile(path.join(distPath, req.path, 'index.html'));
 });
 
