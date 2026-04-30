@@ -5,40 +5,19 @@ const app = express();
 // Change 'portfolio' to match the folder name inside your 'dist' folder
 const distPath = path.join(__dirname, 'dist/portfolio/browser');
 
-const canonicalHost = 'emirhanatar.com';
-const prerenderedRoutes = ['/dev', '/fitness'];
-const seoTrailingSlashRoutePattern = /^\/(dev|fitness)\/$/;
+const prerenderedRoutes = new Set(['/dev', '/fitness']);
 
-function getSeoTrailingSlashRedirect(pathname, originalUrl) {
-    if (!seoTrailingSlashRoutePattern.test(pathname)) {
-        return null;
-    }
-
-    const queryString = originalUrl.slice(pathname.length);
-    return `${pathname.slice(0, -1)}${queryString}`;
-}
-
-app.set('trust proxy', true);
-
-app.use((req, res, next) => {
-    const host = req.hostname.toLowerCase();
-    const forwardedProto = req.get('x-forwarded-proto');
-    const shouldUseApexHost = host === `www.${canonicalHost}`;
-    const shouldUseHttps = forwardedProto !== undefined && forwardedProto !== 'https';
-
-    if (shouldUseApexHost || shouldUseHttps) {
-        res.redirect(301, `https://${canonicalHost}${req.originalUrl}`);
+app.get(['/dev/', '/fitness/'], (req, res, next) => {
+    if (req.path.endsWith('/')) {
+        const queryString = req.originalUrl.slice(req.path.length);
+        res.redirect(301, `${req.path.slice(0, -1)}${queryString}`);
         return;
     }
 
     next();
 });
 
-app.get(seoTrailingSlashRoutePattern, (req, res) => {
-    res.redirect(301, getSeoTrailingSlashRedirect(req.path, req.originalUrl));
-});
-
-app.get(prerenderedRoutes, (req, res) => {
+app.get([...prerenderedRoutes], (req, res) => {
     res.sendFile(path.join(distPath, req.path, 'index.html'));
 });
 
@@ -49,12 +28,6 @@ app.get(/.*/, (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
-
-if (require.main === module) {
-    app.listen(port, () => {
-        console.log(`Server running on port ${port}`);
-    });
-}
-
-module.exports = app;
-module.exports.getSeoTrailingSlashRedirect = getSeoTrailingSlashRedirect;
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
