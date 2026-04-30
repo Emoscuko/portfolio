@@ -7,7 +7,8 @@
     "dev": "npx ng serve",
     "build": "npx ng build --configuration production",
     "watch": "npx ng build --watch --configuration development",
-    "test": "npx ng test"
+    "test": "npx ng test",
+    "check:seo-routes": "node scripts/check-seo-routes.js"
   },
   "private": true,
   "packageManager": "npm@11.11.0",
