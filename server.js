@@ -5,7 +5,17 @@ const app = express();
 // Change 'portfolio' to match the folder name inside your 'dist' folder
 const distPath = path.join(__dirname, 'dist/portfolio/browser');
 
+const canonicalHost = 'emirhanatar.com';
 const prerenderedRoutes = new Set(['/dev', '/fitness']);
+
+app.use((req, res, next) => {
+    if (req.hostname.toLowerCase() === `www.${canonicalHost}`) {
+        res.redirect(301, `https://${canonicalHost}${req.originalUrl}`);
+        return;
+    }
+
+    next();
+});
 
 app.get(['/dev/', '/fitness/'], (req, res, next) => {
     if (req.path.endsWith('/')) {
